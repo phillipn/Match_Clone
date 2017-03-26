@@ -39,6 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    bcrypt (3.1.11)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -53,6 +54,10 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    geokit (1.11.0)
+    geokit-rails (2.2.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.8.1)
@@ -154,8 +159,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   byebug
   coffee-rails (~> 4.2)
+  geokit-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
