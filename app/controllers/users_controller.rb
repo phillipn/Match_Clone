@@ -3,13 +3,14 @@ class UsersController < ApplicationController
     
   end
   def survey
-    
+    session[:survey] = false
   end
   def new
     
   end
   def create
-    
+    session[:survey] =true
+    redirect_to '/survey'
   end
   def login
     
