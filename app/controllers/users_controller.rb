@@ -23,10 +23,10 @@ class UsersController < ApplicationController
       user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], sex: params[:sex], orientation: params[:orientation])
       if user.errors.full_messages[0]
         flash[:errors] = user.errors.full_messages
-         # add what we want to user object in session
         redirect_to '/users/new'
       else
         session[:user] = {id: user.id}
+        session[:user] = {first_name: user.first_name}
         redirect_to '/survey'
       end
     else
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     if user
       if user.authenticate(params[:password])
         session[:user] = {id: user.id}
-        # add what we want to user object in session
+        session[:user] = {first_name: user.first_name}
         redirect_to '/'
       else
         flash[:errors] = ["Incorrect Password"]
