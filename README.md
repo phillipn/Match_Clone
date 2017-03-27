@@ -1,24 +1,22 @@
-# README
+# Match.com Clone
+### This is a Clone of Match.com using Ruby on Rails. Built in 5 Days
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Authors
+#### Patrick Falconer
+#### Nick Phillips
 
-Things you may want to cover:
+## Dependencies
 
-* Ruby version
+## Matching Algorithm
 
-* System dependencies
+## Future Version Updates
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## To-Do
+  * login
+  * logout
+  * show users page
+  * users index
+  * submit survey
+  * matching algorithm
+  * search matches by nearby
+  * 

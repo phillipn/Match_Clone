@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-xs-6 col-sm-6 col-lg-6">
+    <h3>Login</h3>
+    <form action="/login" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <label for="email">Email</label>
+      <input type="email" name="email">
+      <br>
+      <label for="passowrd">Password</label>
+      <input type="password" name="passowrd">
+      <br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-lg-6">
+    <h3>Register a New User</h3>
+    <form action="/users" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <label for="email">Email</label>
+      <input type="email" name="email">
+      <br>
+      <label for="first_name">First Name</label>
+      <input type="text" name="first_name">
+      <br>
+      <label for="last_name">Last Name</label>
+      <input type="text" name="last_name">
+      <br>
+      <label for="sex">Sex</label>
+      <input type="text" name="sex">
+      <br>
+      <label for="orientation">Sexual Orientation</label>
+      <input type="text" name="orientation">
+      <br>
+      <label for="passowrd">Password</label>
+      <input type="password" name="passowrd">
+      <br>
+      <label for="passoword_confirm">Confirm Password</label>
+      <input type="password" name="passoword_confirm">
+      <br>
+      <input type="submit" value="Register user">
+    </form>
+  </div>
+</div>
