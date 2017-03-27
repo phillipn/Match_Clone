@@ -1,21 +1,42 @@
 class UsersController < ApplicationController
+  before_action :check_if_logged_in
+
   def index
-    check_if_logged_in
+    
   end
-  def survey
-    check_if_logged_in
-    puts session.inspect
-    user = UserInfo.find_by(user_id: session[:user]['id'])
+  def post_personality_survey
+    key = 1
+    incomplete = false
+    while key < 33
+      unless params[key]
+        flash[:errors] = ["Need to Complete All Questions"]
+        incomplete = true
+        key = key+1
+      end 
+    end
+    if incomplete
+      redirect_to '/survey/personality'
+    else
+      redirect_to '/'
+    end
+  end
+  def personality_survey
+    user = UserInfo.find_by(user_id: session[:user]["id"])
     if user
       flash[:errors] = ["Already Completed Survey"]
       redirect_to '/'
     else
-      # render get to /survey
+      # render get /survey
     end
+  end
+  def personal_survey
+
+  end
+  def post_personal_survey
+
   end
 
   def new
-
   end
   def create
     puts params

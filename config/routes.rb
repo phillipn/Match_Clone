@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   post '/login' => 'users#login', as: "users_login"
   post '/logout' => 'users#logout', as: "users_logout"
   get '/users/:id' => 'users#show', as: "users_show"
-  get '/survey' => 'users#survey', as: "users_survey"
-  post '/survey' => 'users#post_survey', as: "users_post_survey"
+  get '/survey/personality' => 'users#personality_survey', as: "users_personality_survey"
+  post '/survey/personality' => 'users#post_personality_survey', as: "users_post_personality_survey"
+  get '/survey/personal' => 'users#personal_survey'
+  post '/survey/personal' => 'users#post_personal_survey'
+
 
   get 'match_rooms/' => 'match_rooms#index', as: "match_room_index"
   get 'match_rooms/:id/' => 'match_rooms#show', as: "show_match_room"
