@@ -1,11 +1,11 @@
 module MatchRoomsHelper
   def chat_room_greeting(sender, receiver)
-    if sender.id == session[:user]['id']
-      sender = 'you'
+    if sender.id == 1
+      sender.first_name = 'you'
     else
-      receiver = 'you'
+      receiver.first_name = 'you'
     end
 
-    return "Chat between #{sender} and #{receiver}"
+    return "Chat between #{sender.first_name} and #{receiver.first_name}"
   end
 end

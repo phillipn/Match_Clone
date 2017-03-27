@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'match_rooms/:id/' => 'match_rooms#show', as: "show_match_room"
   post 'match_rooms/' => 'match_rooms#create', as: "create_match_room"
   put 'match_rooms/:id/' => 'match_rooms#update', as: "match_room"
-  post 'match_rooms/:id/messages/'  => 'messages#create', as: "create_message"
+  post 'match_rooms/:id/messages/'  => 'messages#create', as: "match_room_messages"
 
 
 
