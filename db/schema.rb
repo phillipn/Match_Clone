@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327180000) do
+ActiveRecord::Schema.define(version: 20170327223230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,16 +58,13 @@ ActiveRecord::Schema.define(version: 20170327180000) do
   end
 
   create_table "user_infos", force: :cascade do |t|
-    t.integer  "min_age"
+    t.integer  "user_id"
+    t.string   "personality"
     t.integer  "max_age"
-    t.boolean  "have_kids"
-    t.boolean  "want_kids"
-    t.integer  "height"
-    t.boolean  "smoke"
-    t.boolean  "cat"
-    t.boolean  "dog"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "min_age"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_user_infos_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,4 +81,5 @@ ActiveRecord::Schema.define(version: 20170327180000) do
   add_foreign_key "locations", "users"
   add_foreign_key "messages", "match_rooms"
   add_foreign_key "profiles", "users"
+  add_foreign_key "user_infos", "users"
 end

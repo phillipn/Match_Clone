@@ -17,7 +17,38 @@ class UsersController < ApplicationController
     if incomplete
       redirect_to '/survey/personality'
     else
-      redirect_to '/'
+      user = UserInfo.find_by(user_id: session[:user]["id"])
+      ie = 30 - params["3"].to_i  - params["7"].to_i  - params["11"].to_i  + params["15"].to_i  - params["19"].to_i  + params["23"].to_i  + params["27"].to_i  - params["31"].to_i 
+      sn = 12 + params["4"].to_i + params["8"].to_i + params["12"].to_i + params["16"].to_i + params["20"].to_i - params["24"].to_i - params["28"].to_i + params["32"].to_i
+      ft = 30 - params["2"].to_i + params["6"].to_i + params["10"].to_i  - params["14"].to_i - params["18"].to_i + params["22"].to_i - params["26"].to_i - params["30"].to_i
+      jp = 18 + params["1"].to_i + params["5"].to_i - params["9"].to_i + params["13"].to_i - params["17"].to_i + params["21"].to_i - params["25"].to_i + params["29"].to_i
+      oejts = ''
+      if ie > 24
+        oejts = oejts + 'E'
+      else
+        oejts = oejts + 'I'
+      end
+
+      if sn > 24
+        oejts = oejts + 'N'
+      else
+        oejts = oejts + 'S'
+      end
+
+      if ft > 24
+        oejts = oejts + 'T'
+      else
+        oejts = oejts + 'F'
+      end
+
+      if jp > 24
+        oejts = oejts + 'P'
+      else
+        oejts = oejts + 'J'
+      end
+      user.personality = oejts
+      user.save
+      redirect_to '/survey/personal'
     end
   end
   def personality_survey
@@ -46,9 +77,15 @@ class UsersController < ApplicationController
         flash[:errors] = user.errors.full_messages
         redirect_to '/users/new'
       else
-        session[:user] = {id: user.id}
-        session[:user] = {first_name: user.first_name}
-        redirect_to '/survey'
+        userinfo = UserInfo.create(user_id:user.id)
+        if userinfo.errors.full_messages[0]
+          flash[:errors] = user.errors.full_messages
+          redirect_to '/users/new'
+        else
+          session[:user] = {id: user.id}
+          session[:user] = {first_name: user.first_name}
+          redirect_to '/survey'
+        end
       end
     else
       flash[:errors] = ["Passwords Do Not Match"]
