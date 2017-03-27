@@ -7,9 +7,10 @@ class MessagesController < ApplicationController
     @message.match_room_id = params[:id]
 
     if @message.save
-      flash[:notice] = ['Success']
-    else
-      flash[:errors] = ['Error']
+      ActionCable.server.broadcast 'messages',
+        message: @message.content,
+        sender: @message.sender.first_name
+      head :ok
     end
   end
 
