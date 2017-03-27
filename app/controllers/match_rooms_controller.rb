@@ -1,7 +1,7 @@
 class MatchRoomsController < ApplicationController
   def index
-    @matches_sent = MatchRoom.where("sender_id = ?", 1)
-    @matches_received = MatchRoom.where("receiver_id = ?", 1)
+    @matches_sent = MatchRoom.where("sender_id = ?", session[:user]['id'])
+    @matches_received = MatchRoom.where("receiver_id = ?", session[:user]['id'])
   end
 
   def show
@@ -28,8 +28,10 @@ class MatchRoomsController < ApplicationController
 
     if @match_room.save
       flash[:notice] = ['Success']
+      redirect_to match_room_path(@match_room)
     else
       flash[:errors] = ['Error']
+      redirect_to match_room_index_path
     end
   end
 end
