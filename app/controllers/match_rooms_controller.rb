@@ -5,6 +5,7 @@ class MatchRoomsController < ApplicationController
   end
 
   def show
+    @message = Message.new
     @match_room = MatchRoom.find(params[:id])
   end
 
@@ -23,7 +24,7 @@ class MatchRoomsController < ApplicationController
 
   def update
     @match_room = MatchRoom.find(params[:id])
-    @match_room.status = params[:status]
+    @match_room.status = params["match_room"]["status"]
 
     if @match_room.save
       flash[:notice] = ['Success']

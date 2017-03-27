@@ -12,7 +12,7 @@
         <td><%= match.receiver_id %></td>
         <td>
           <% if match.status == 'Open' %>
-            <%= link_to 'Chat', show_match_room(match) %>
+            <%= link_to 'Chat', show_match_room_path(match) %>
           <% else %>
             <%= match.status %>
           <% end %>
@@ -36,7 +36,12 @@
         <td><%= match.sender_id %></td>
         <td>
           <% if match.status == 'Open' %>
-            <%= link_to 'Chat', show_match_room(match) %>
+            <%= link_to 'Chat', show_match_room_path(match), class: 'btn' %>
+          <% elsif match.status == 'Pending' %>
+            <%= form_for match, method: :put do |f| %>
+              <%= f.hidden_field :status, value: 'Open' %>
+              <%= f.submit 'Accept' %>
+            <% end %>
           <% else %>
             <%= match.status %>
           <% end %>
