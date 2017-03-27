@@ -1,0 +1,47 @@
+<h1>Match Request Inbox</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Receiver Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches_sent.each do |match| %>
+      <tr>
+        <td><%= match.receiver_id %></td>
+        <td>
+          <% if match.status == 'Open' %>
+            <%= link_to 'Chat', show_match_room(match) %>
+          <% else %>
+            <%= match.status %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Matches Request Outbox</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Sender Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches_received.each do |match| %>
+      <tr>
+        <td><%= match.sender_id %></td>
+        <td>
+          <% if match.status == 'Open' %>
+            <%= link_to 'Chat', show_match_room(match) %>
+          <% else %>
+            <%= match.status %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
