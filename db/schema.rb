@@ -81,4 +81,5 @@ ActiveRecord::Schema.define(version: 20170327223230) do
   add_foreign_key "locations", "users"
   add_foreign_key "messages", "match_rooms"
   add_foreign_key "profiles", "users"
+  add_foreign_key "user_infos", "users"
 end
