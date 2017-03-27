@@ -5,11 +5,19 @@
 .question {
   text-align: center;
 }
+.errors{
+  color: red;
+}
 </style>
 <h1>Survey</h1>
 <h3>For each pair,
 you must choose where on the scale between them you think you are. For example, if the pair is “angry” versus “calm”, you should circle a 1 if you are always angry and never calm, a 3 if you are half and half, etc.</h3>
-<form>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p class="errors"><%= error %></p>
+  <% end %>
+<% end %>
+<form action="/survey/personality" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <div class="question">
     <p class="survey_questions">Makes Lists</p>
