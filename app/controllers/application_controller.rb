@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_logged_in
     if !session[:user]
-      redirect_to '/'
+      redirect_to '/users/new'
     end
   end
 end
