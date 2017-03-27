@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MatchClone</title>
+    <title>SelfJoin</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,8 @@
   </head>
 
   <body>
+    <%= render 'shared/flash' %>
+    <%= render 'shared/nav' %>
     <%= yield %>
   </body>
 </html>

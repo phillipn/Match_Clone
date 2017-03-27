@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327001406) do
+ActiveRecord::Schema.define(version: 20170327143227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,23 +25,23 @@ ActiveRecord::Schema.define(version: 20170327001406) do
     t.index ["user_id"], name: "index_locations_on_user_id", using: :btree
   end
 
-  create_table "matches", force: :cascade do |t|
+  create_table "match_rooms", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.string   "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["receiver_id"], name: "index_matches_on_receiver_id", using: :btree
-    t.index ["sender_id"], name: "index_matches_on_sender_id", using: :btree
+    t.index ["receiver_id"], name: "index_match_rooms_on_receiver_id", using: :btree
+    t.index ["sender_id"], name: "index_match_rooms_on_sender_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
     t.integer  "sender_id"
-    t.integer  "receiver_id"
     t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "match_room_id"
+    t.index ["match_room_id"], name: "index_messages_on_match_room_id", using: :btree
     t.index ["sender_id"], name: "index_messages_on_sender_id", using: :btree
   end
 
@@ -68,5 +68,6 @@ ActiveRecord::Schema.define(version: 20170327001406) do
   end
 
   add_foreign_key "locations", "users"
+  add_foreign_key "messages", "match_rooms"
   add_foreign_key "profiles", "users"
 end
