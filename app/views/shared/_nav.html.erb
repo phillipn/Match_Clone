@@ -3,10 +3,10 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if session[:user] %>
-          <li><%= link_to "Log out", user_path(session[:user]["id"]), method: :delete %></li>
+          <li><%= link_to "Log out", "/", method: :delete %></li>
           <li class="navbar-right"><span class="glyphicon glyphicon-plus"></span></li>
         <% else %>
-          <li><%= link_to "Log in", users_login_path %></li>
+          <li><%= link_to "Log in", "/" %></li>
         <% end %>
       </ul>
     </nav>

@@ -1,2 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.main{
+  margin-top: 100px;
+}
+.nav li, .nav a {
+  color: white !important
+}
