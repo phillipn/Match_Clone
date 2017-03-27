@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   put 'match_rooms/:id/' => 'match_rooms#update', as: "match_room"
   post 'match_rooms/:id/messages/'  => 'messages#create', as: "match_room_messages"
 
+  mount ActionCable.server => '/cable'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
