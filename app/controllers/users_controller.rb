@@ -62,7 +62,15 @@ class UsersController < ApplicationController
   end
 
   def post_personal_survey
-
+    id = UserInfo.find_by(user_id: session[:user]['id'])
+    id = id.id
+    info = UserInfo.update(id, :max_age => params[:min_age], :min_age => params[:max_age], :hair => params[:hair], :eye => params[:eye], :education => params[:education], :kids => params[:kids], :date_kids => params[:date_kids], :want_kids => params[:want_kids], :politics => params[:politics], :date_politics => params[:date_politics], :smoke => params[:smoke], :date_smoke => params[:date_smoke], :tattoo => params[:tattoo], :date_tattoo => params[:date_tattoo], :religion => params[:religion], :date_religion => params[:date_religion], :pet => params[:pet], :date_pet => params[:date_pet])
+    if info.errors.full_messages[0]
+     flash[:errors] = info.errors.full_messages
+     redirect_to '/survey/personal'
+    else
+      redirect_to '/'
+    end
   end
 
   def new
