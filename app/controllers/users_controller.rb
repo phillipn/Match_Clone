@@ -86,7 +86,7 @@ class UsersController < ApplicationController
         else
           session[:user] = {id: user.id}
           session[:user] = {first_name: user.first_name}
-          redirect_to '/survey'
+          redirect_to '/survey/personality'
         end
       end
     else
