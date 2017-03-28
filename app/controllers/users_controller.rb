@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @match_room = MatchRoom.new
   end
 
   def post_personality_survey

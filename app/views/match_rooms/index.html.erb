@@ -1,15 +1,15 @@
-<h1>Match Request Inbox</h1>
+<h1>Matches</h1>
 <table>
   <thead>
     <tr>
-      <th>Receiver Name</th>
+      <th>Name</th>
       <th>Status</th>
     </tr>
   </thead>
   <tbody>
     <% @matches_sent.each do |match| %>
       <tr>
-        <td><%= match.receiver_id %></td>
+        <td><%= match.receiver.first_name %></td>
         <td>
           <% if match.status == 'Open' %>
             <%= link_to 'Chat', show_match_room_path(match) %>
@@ -22,7 +22,7 @@
   </tbody>
 </table>
 
-<h1>Matches Request Outbox</h1>
+<h1>Breakups</h1>
 <table>
   <thead>
     <tr>
