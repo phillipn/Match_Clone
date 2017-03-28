@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327223230) do
+ActiveRecord::Schema.define(version: 20170328180644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,8 +62,24 @@ ActiveRecord::Schema.define(version: 20170327223230) do
     t.string   "personality"
     t.integer  "max_age"
     t.integer  "min_age"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "hair"
+    t.string   "eye"
+    t.string   "education"
+    t.boolean  "kids"
+    t.boolean  "date_kids"
+    t.boolean  "want_kids"
+    t.string   "politics"
+    t.boolean  "date_politics"
+    t.boolean  "smoke"
+    t.boolean  "date_smoke"
+    t.boolean  "tattoo"
+    t.boolean  "date_tattoo"
+    t.string   "religion"
+    t.boolean  "date_religion"
+    t.boolean  "pet"
+    t.boolean  "date_pet"
     t.index ["user_id"], name: "index_user_infos_on_user_id", using: :btree
   end
 

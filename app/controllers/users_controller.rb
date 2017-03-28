@@ -6,20 +6,10 @@ class UsersController < ApplicationController
   end
 
   def post_personality_survey
-    key = 1
-    incomplete = false
-    while key <= 32
-      unless params[key]
-        flash[:errors] = ["Need to Complete All Questions"]
-        incomplete = true
-        key = key+1
-        puts "ERRORS #{key}, #{incomplete}, #{params[key]}"
-      end
-    end
-    if incomplete
+    if params.length != 35
+      flash[:errors] = ["Need to Complete all Survey Questions"]
       redirect_to '/survey/personality'
     else
-      user = UserInfo.find_by(user_id: session[:user]["id"])
       ie = 30 - params["3"].to_i  - params["7"].to_i  - params["11"].to_i  + params["15"].to_i  - params["19"].to_i  + params["23"].to_i  + params["27"].to_i  - params["31"].to_i
       sn = 12 + params["4"].to_i + params["8"].to_i + params["12"].to_i + params["16"].to_i + params["20"].to_i - params["24"].to_i - params["28"].to_i + params["32"].to_i
       ft = 30 - params["2"].to_i + params["6"].to_i + params["10"].to_i  - params["14"].to_i - params["18"].to_i + params["22"].to_i - params["26"].to_i - params["30"].to_i
@@ -48,28 +38,39 @@ class UsersController < ApplicationController
       else
         oejts = oejts + 'J'
       end
-      user.personality = oejts
-      user.save
+      id = UserInfo.find_by(user_id: session[:user]['id'])
+      id = id.id
+      user = UserInfo.update(id, :personality => oejts)
       redirect_to '/survey/personal'
     end
   end
 
   def personality_survey
-    user = UserInfo.find_by(user_id: session[:user]["id"])
-    if user
-      flash[:errors] = ["Already Completed Survey"]
-      redirect_to '/'
-    else
-      # render get /survey
-    end
+     id = UserInfo.find_by(user_id: session[:user]['id'])
+     if id.personality
+       flash[:errors] = ["Already Completed Personality Survey"]
+       redirect_to '/'
+      end
   end
 
   def personal_survey
-
+    id = UserInfo.find_by(user_id: session[:user]['id'])
+     if id.min_age
+       flash[:errors] = ["Already Completed Personal Survey"]
+       redirect_to '/'
+      end
   end
 
   def post_personal_survey
-
+    id = UserInfo.find_by(user_id: session[:user]['id'])
+    id = id.id
+    info = UserInfo.update(id, :max_age => params[:min_age], :min_age => params[:max_age], :hair => params[:hair], :eye => params[:eye], :education => params[:education], :kids => params[:kids], :date_kids => params[:date_kids], :want_kids => params[:want_kids], :politics => params[:politics], :date_politics => params[:date_politics], :smoke => params[:smoke], :date_smoke => params[:date_smoke], :tattoo => params[:tattoo], :date_tattoo => params[:date_tattoo], :religion => params[:religion], :date_religion => params[:date_religion], :pet => params[:pet], :date_pet => params[:date_pet])
+    if info.errors.full_messages[0]
+     flash[:errors] = info.errors.full_messages
+     redirect_to '/survey/personal'
+    else
+      redirect_to '/'
+    end
   end
 
   def new
@@ -89,7 +90,7 @@ class UsersController < ApplicationController
           redirect_to '/users/new'
         else
           session[:user] = {first_name: user.first_name, id: user.id}
-          redirect_to '/survey'
+          redirect_to '/survey/personality'
         end
       end
     else

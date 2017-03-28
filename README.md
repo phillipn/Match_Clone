@@ -12,11 +12,9 @@
 ## Future Version Updates
 
 ## To-Do
-  * login
-  * logout
   * show users page
   * users index
-  * submit survey
   * matching algorithm
   * search matches by nearby
-  * 
+  * submit personal survey
+  * style nav bar
