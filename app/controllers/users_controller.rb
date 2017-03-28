@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :check_if_logged_in, only: [:new, :create, :login]
+  before_action :check_if_logged_in, except: [:new, :create, :login]
 
   def index
     @users = User.all
