@@ -1,5 +1,9 @@
 class MatchRoomsController < ApplicationController
+  before_action :interested_party?, only: :show
+  before_action :check_if_logged_in
+
   def index
+    puts session[:user]
     @matches_sent = MatchRoom.where("sender_id = ?", session[:user]['id'])
     @matches_received = MatchRoom.where("receiver_id = ?", session[:user]['id'])
   end
@@ -34,4 +38,12 @@ class MatchRoomsController < ApplicationController
       redirect_to match_room_index_path
     end
   end
+
+  private
+    def interested_party?
+      match_room = MatchRoom.find_by(id: params[:id])
+      if !match_room or (session[:user]['id'] != match_room.sender_id) or (session[:user]['id'] != match_room.receiver_id)
+        redirect_to match_room_index_path
+      end
+    end
 end
