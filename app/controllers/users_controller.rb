@@ -1,16 +1,19 @@
 class UsersController < ApplicationController
-  def index
+  skip_before_action :check_if_logged_in, only: [:new, :create, :login]
 
+  def index
+    @users = User.all
   end
 
   def post_personality_survey
     key = 1
     incomplete = false
-    while key < 33
+    while key <= 32
       unless params[key]
         flash[:errors] = ["Need to Complete All Questions"]
         incomplete = true
         key = key+1
+        puts "ERRORS #{key}, #{incomplete}, #{params[key]}"
       end
     end
     if incomplete
@@ -118,7 +121,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    check_if_logged_in
     @user = User.find(params[:id])
   end
 end
