@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :check_if_logged_in
-  skip_before_action :check_if_logged_in, only: [:new]
+  skip_before_action :check_if_logged_in, only: [:new, :create, :login]
 
   def index
-    
+    @users = User.all
   end
   def post_personality_survey
     key = 1
