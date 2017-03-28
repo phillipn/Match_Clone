@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     user = User.find_by(email:params[:email])
     if user
       if user.authenticate(params[:password])
-        session[:user] = {first_name: user.first_name, id: user.idid: user.id}
+        session[:user] = {first_name: user.first_name, id: user.id}
         redirect_to '/'
       else
         flash[:errors] = ["Incorrect Password"]
