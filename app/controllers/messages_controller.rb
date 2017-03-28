@@ -8,7 +8,8 @@ class MessagesController < ApplicationController
 
     if @message.save
       ActionCable.server.broadcast 'messages',
-        message: @message,
+        content: @message.content,
+        created_at: @message.created_at,
         sender: @message.sender.first_name
       head :ok
     end
