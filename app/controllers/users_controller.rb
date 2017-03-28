@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_action :check_if_logged_in
-  skip_before_action :check_if_logged_in, only: [:new, :create, :login]
+  before_action :check_if_logged_in, except: [:new, :create, :login]
 
   def index
     @users = User.all
   end
+
   def post_personality_survey
     key = 1
     incomplete = false
@@ -14,13 +14,13 @@ class UsersController < ApplicationController
         incomplete = true
         key = key+1
         puts "ERRORS #{key}, #{incomplete}, #{params[key]}"
-      end 
+      end
     end
     if incomplete
       redirect_to '/survey/personality'
     else
       user = UserInfo.find_by(user_id: session[:user]["id"])
-      ie = 30 - params["3"].to_i  - params["7"].to_i  - params["11"].to_i  + params["15"].to_i  - params["19"].to_i  + params["23"].to_i  + params["27"].to_i  - params["31"].to_i 
+      ie = 30 - params["3"].to_i  - params["7"].to_i  - params["11"].to_i  + params["15"].to_i  - params["19"].to_i  + params["23"].to_i  + params["27"].to_i  - params["31"].to_i
       sn = 12 + params["4"].to_i + params["8"].to_i + params["12"].to_i + params["16"].to_i + params["20"].to_i - params["24"].to_i - params["28"].to_i + params["32"].to_i
       ft = 30 - params["2"].to_i + params["6"].to_i + params["10"].to_i  - params["14"].to_i - params["18"].to_i + params["22"].to_i - params["26"].to_i - params["30"].to_i
       jp = 18 + params["1"].to_i + params["5"].to_i - params["9"].to_i + params["13"].to_i - params["17"].to_i + params["21"].to_i - params["25"].to_i + params["29"].to_i
@@ -53,6 +53,7 @@ class UsersController < ApplicationController
       redirect_to '/survey/personal'
     end
   end
+
   def personality_survey
     user = UserInfo.find_by(user_id: session[:user]["id"])
     if user
@@ -62,15 +63,18 @@ class UsersController < ApplicationController
       # render get /survey
     end
   end
+
   def personal_survey
 
   end
+
   def post_personal_survey
 
   end
 
   def new
   end
+
   def create
     puts params
     if params[:password] == params[:password_confirm]
@@ -84,9 +88,8 @@ class UsersController < ApplicationController
           flash[:errors] = user.errors.full_messages
           redirect_to '/users/new'
         else
-          session[:user] = {id: user.id}
-          session[:user] = {first_name: user.first_name}
-          redirect_to '/survey/personality'
+          session[:user] = {first_name: user.first_name, id: user.id}
+          redirect_to '/survey'
         end
       end
     else
@@ -94,12 +97,12 @@ class UsersController < ApplicationController
       redirect_to '/users/new'
     end
   end
+
   def login
     user = User.find_by(email:params[:email])
     if user
       if user.authenticate(params[:password])
-        session[:user] = {id: user.id}
-        session[:user] = {first_name: user.first_name}
+        session[:user] = {first_name: user.first_name, id: user.id}
         redirect_to '/'
       else
         flash[:errors] = ["Incorrect Password"]
@@ -111,10 +114,12 @@ class UsersController < ApplicationController
       redirect_to '/users/new'
     end
   end
+
   def logout
     session.clear
     redirect_to '/users/new'
   end
+
   def show
     @user = User.find(params[:id])
   end
