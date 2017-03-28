@@ -54,7 +54,11 @@ class UsersController < ApplicationController
   end
 
   def personal_survey
-
+    id = UserInfo.find_by(user_id: session[:user]['id'])
+     if id.min_age
+       flash[:errors] = ["Already Completed Personal Survey"]
+       redirect_to '/'
+      end
   end
 
   def post_personal_survey
