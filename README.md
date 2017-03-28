@@ -14,7 +14,6 @@
 ## To-Do
   * show users page
   * users index
-  * submit personaility survey
   * matching algorithm
   * search matches by nearby
   * submit personal survey

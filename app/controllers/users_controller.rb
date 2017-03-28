@@ -6,16 +6,14 @@ class UsersController < ApplicationController
   end
 
   def post_personality_survey
-    if incomplete
+    if params.length != 35
+      flash[:errors] = ["Need to Complete all Survey Questions"]
       redirect_to '/survey/personality'
     else
-      user = UserInfo.find_by(user_id: session[:user]["id"])
-      puts "USER #{user}"
       ie = 30 - params["3"].to_i  - params["7"].to_i  - params["11"].to_i  + params["15"].to_i  - params["19"].to_i  + params["23"].to_i  + params["27"].to_i  - params["31"].to_i
       sn = 12 + params["4"].to_i + params["8"].to_i + params["12"].to_i + params["16"].to_i + params["20"].to_i - params["24"].to_i - params["28"].to_i + params["32"].to_i
       ft = 30 - params["2"].to_i + params["6"].to_i + params["10"].to_i  - params["14"].to_i - params["18"].to_i + params["22"].to_i - params["26"].to_i - params["30"].to_i
       jp = 18 + params["1"].to_i + params["5"].to_i - params["9"].to_i + params["13"].to_i - params["17"].to_i + params["21"].to_i - params["25"].to_i + params["29"].to_i
-      puts "RESULTS #{ie}, #{sn}, #{ft}, #{jp}"
       oejts = ''
       if ie > 24
         oejts = oejts + 'E'
@@ -40,20 +38,19 @@ class UsersController < ApplicationController
       else
         oejts = oejts + 'J'
       end
-      user.personality = oejts
-      user.save
+      id = UserInfo.find_by(user_id: session[:user]['id'])
+      id = id.id
+      user = UserInfo.update(id, :personality => oejts)
       redirect_to '/survey/personal'
     end
   end
 
   def personality_survey
-    user = UserInfo.find_by(user_id: session[:user]["id"])
-    if user
-      flash[:errors] = ["Already Completed Survey"]
-      redirect_to '/'
-    else
-      # render get /survey
-    end
+     id = UserInfo.find_by(user_id: session[:user]['id'])
+     if id.personality
+       flash[:errors] = ["Already Completed Personality Survey"]
+       redirect_to '/'
+      end
   end
 
   def personal_survey
@@ -81,7 +78,7 @@ class UsersController < ApplicationController
           redirect_to '/users/new'
         else
           session[:user] = {first_name: user.first_name, id: user.id}
-          redirect_to '/survey'
+          redirect_to '/survey/personality'
         end
       end
     else

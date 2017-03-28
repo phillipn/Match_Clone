@@ -1,0 +1,132 @@
+
+<h2>Personal Survey</h2>
+<form method="post" action="/survey/personal">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="">Birthday</label>
+  <input type="date" name="birthday">
+  <br>
+  <label for="">Hair Color</label>
+  <select name="hair">
+    <option disabled selected value> -- select one -- </option>
+    <option value="Blonde">Blonde</option>
+    <option value="Brunette">Brunette</option>
+    <option value="Grey">Grey</option>
+    <option value="Red">Red</option>
+    <option value="Other">Other</option>
+  </select>
+  <br>
+  <label for="">Eye Color</label>
+  <select name="eye">
+    <option disabled selected value> -- select one -- </option>
+    <option value="Blue">Blue</option>
+    <option value="Brown">Brown</option>
+    <option value="Gray">Gray</option>
+    <option value="Green">Green</option>
+    <option value="Hazel">Hazel</option>
+    <option value="Other">Other</option>
+  </select>
+  <br>
+  <label for="">Highest Level of Education</label>
+  <select name="education">
+    <option disabled selected value> -- select one -- </option>
+    <option value="High School">High School</option>
+    <option value="Undergraduate Degree">Undergraduate Degree</option>
+    <option value="Masters Degree">Masters Degree</option>
+    <option value="Doctorate">Doctorate</option>
+  </select>
+  <br>
+  <label for="">Minimum Age Range of Future Love</label>
+  <input type="number" name="min_age">
+  <br> 
+  <label for="">Maximum Age Range of Future Love</label>
+  <input type="number" name="max_age">
+  <br>
+  <label for="">Do You Have Kids</label>
+  <input type="radio" name="kids" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="kids" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Would You Date Someone With Kids</label>
+  <input type="radio" name="date_kids" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="date_kids" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="kids">Do You Want Kids</label>
+  <input type="radio" name="want_kids" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="want_kids" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Political Views</label>
+  <input type="radio" name="politics" value="Conservative">
+  <label for="">Conservative</label>
+  <input type="radio" name="politics" value="Moderate">
+  <label for="">Moderate</label>
+  <input type="radio" name="politics" value="Liberal">
+  <label for="">Liberal</label>
+  <br>
+  <label for="">Would You Date Someone with Alternative Political Views as You?</label>
+  <input type="radio" name="date_politics" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="date_politics" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Do You Smoke/label>
+  <input type="radio" name="smoke" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="smoke" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Would You Date Someone Who Smoked</label>
+  <input type="radio" name="date_smoke" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="date_smoke" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Do You Have A Tattoo</label>
+  <input type="radio" name="tattoo" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="tattoo" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Would You Date Someone Who had a Tattoo</label>
+  <input type="radio" name="date_tattoo" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="date_tattoo" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Your Religion</label>
+  <select name="religion">
+    <option disabled selected value> -- select one -- </option>
+    <option value="Christianit">Christianity</option>
+    <option value="Islam">Islam</option>
+    <option value="Judaism">Judaism</option>
+    <option value="Buddhism">Buddhism</option>
+    <option value="Hinduism">Hinduism</option>
+    <option value="Atheistism">Atheistism</option>
+    <option value="Mormonism">Mormonism</option>
+    <option value="Other">Other</option>
+  </select>
+  <br>
+  <label for="">Would You Date Someone Who Did Not Practice Same Religion as You?</label>
+  <input type="radio" name="date_religion" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="date_religion" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Do you Have A Pet?</label>
+  <input type="radio" name="pet" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="pet" value="no">
+  <label for="">No</label>
+  <br>
+  <label for="">Would You Date Someone Who had a Pet?</label>
+  <input type="radio" name="date_pet" value="yes">
+  <label for="">Yes</label>
+  <input type="radio" name="date_pet" value="no">
+  <label for="">No</label>
+  <br>
+  <input type="submit" value="Submit Survey">
+</form>
