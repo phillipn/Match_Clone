@@ -6,6 +6,6 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
   },
 
   renderMessage: function(data) {
-    return "<div class='panel-header'><h3>" + data.sender + "<small> at " + data.message.created_at + "</small></h3></div><div class='panel-body'><p>" + data.message.content + "</p></div>";
+    return "<div class='panel-header'><h3>" + data.sender + "<small> at " + data.created_at + "</small></h3></div><div class='panel-body'><p>" + data.content + "</p></div>";
   }
 });
