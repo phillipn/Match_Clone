@@ -10,4 +10,41 @@
 #messages{
   height: 600px;
   overflow: scroll;
+  position: relative;
+}
+
+.thumbnail{
+  height:30px;
+  width: 30px;
+}
+.message_info, .thumbnail{
+  display: inline-block;
+}
+
+.colored-message{
+  width: 50%;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 5px;
+  border: 3px solid black;
+}
+.blue{
+  float: right;
+  clear: both;
+  background: blue;
+  color: white;
+}
+.yellow{
+  clear: both;
+  background: yellow;
+}
+.center{
+  text-align: center;
+}
+.glyphicon-heart{
+  color: red;
+  margin: 5px;
+}
+.message_submit{
+  margin-top: 5px;
 }

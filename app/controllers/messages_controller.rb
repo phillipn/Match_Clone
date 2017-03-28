@@ -10,7 +10,9 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         content: @message.content,
         created_at: @message.created_at,
-        sender: @message.sender.first_name
+        sender: @message.sender.first_name,
+        user_id: session[:user]['id'],
+        sender_id: @message.sender.id
       head :ok
     end
   end
