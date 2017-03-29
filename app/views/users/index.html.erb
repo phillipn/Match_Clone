@@ -1,11 +1,11 @@
 <h1>Index</h1>
 future search bar
 <div class="row">
-<% @users.each do |user| %>
+<% @possible_matches.each do |user| %>
   <div class="col-sm-3 col-md-3">
     <div class="thumbnail">
       <div class="caption">
-        <h3><%= user.first_name %> <%= user.last_name %></h3>
+        <h3><%= user.user.first_name %> <%= user.user.last_name %></h3>
         <%= form_for @match_room do |f| %>
           <%= f.hidden_field :receiver_id, value: user.id %>
           <%= f.submit 'Get a room' %>
