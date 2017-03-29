@@ -3,6 +3,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if session[:user] %>
+          <li><%= link_to "Match Central", match_room_index_path %></li>
           <li><%= link_to "Log out", users_logout_path, method: :post %></li>
         <% else %>
           <li><%= link_to "Log in", "/users/new" %></li>

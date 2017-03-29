@@ -1,15 +1,18 @@
-<h1>Matches</h1>
-<table>
+<h1><span class='glyphicon glyphicon-heart'></span>Matches</h1>
+<table class='table'>
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Status</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @matches_sent.each do |match| %>
       <tr>
-        <td><%= match.receiver.first_name %></td>
+        <td><img class="thumbnail" src="<%= match.receiver.photo %>" alt="TBD"></td>
+        <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
         <td>
           <% if match.status == 'Open' %>
             <%= link_to 'Chat', show_match_room_path(match) %>
@@ -17,33 +20,35 @@
             <%= match.status %>
           <% end %>
         </td>
+        <td>
+          <%= form_for match, method: :put do |f| %>
+            <%= f.hidden_field :status, value: 'Closed' %>
+            <%= f.submit 'Break Up', class: 'btn btn-danger' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<h1>Breakups</h1>
-<table>
+<h1><span class='glyphicon glyphicon-remove'></span>Breakups</h1>
+<table class='table'>
   <thead>
     <tr>
-      <th>Sender Name</th>
-      <th>Status</th>
+      <th></th>
+      <th>Name</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @matches_received.each do |match| %>
+    <% @breakups.each do |match| %>
       <tr>
-        <td><%= match.sender_id %></td>
+        <td><img class="thumbnail" src="<%= match.receiver.photo %>" alt="TBD"></td>
+        <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
         <td>
-          <% if match.status == 'Open' %>
-            <%= link_to 'Chat', show_match_room_path(match), class: 'btn' %>
-          <% elsif match.status == 'Pending' %>
-            <%= form_for match, method: :put do |f| %>
-              <%= f.hidden_field :status, value: 'Open' %>
-              <%= f.submit 'Accept' %>
-            <% end %>
-          <% else %>
-            <%= match.status %>
+          <%= form_for match, method: :put do |f| %>
+            <%= f.hidden_field :status, value: 'Open' %>
+            <%= f.submit 'Rekindle', class: 'btn btn-info' %>
           <% end %>
         </td>
       </tr>
