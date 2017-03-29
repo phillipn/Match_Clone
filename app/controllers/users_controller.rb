@@ -281,7 +281,6 @@ class UsersController < ApplicationController
   end
 
   def update
-      puts params
       user = User.find_by(id: params[:id])
       user.picture = params[:picture]
       user.save
