@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :check_if_logged_in, except: [:new, :create, :login]
 
   def index
+    @match_room = MatchRoom.new
     current_user = UserInfo.where(user_id: session[:user]['id'])
     istj = {best: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP" ], ok: ["ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP"], worst: ["ESFJ", "ESFP", "ENFP", "INFP"], population: 0.14}
     istp = {best: ["ESTJ", "ISTJ", "ENTJ", "ESTP"], ok: ["ESFJ", "ISFP", "INTJ", "ISFJ"], worst: ["ISTP", "ESFP", "ENTP", "INTP", "ENFJ", "INFJ", "ENFP", 'INFP'], population: .06}
@@ -85,7 +86,6 @@ class UsersController < ApplicationController
 
 #  "max_age"
 #  "min_age"
-
 
   end
 
