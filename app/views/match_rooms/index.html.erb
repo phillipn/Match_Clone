@@ -1,57 +1,80 @@
-<h1><span class='glyphicon glyphicon-heart'></span>Matches</h1>
-<table class='table'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @matches_sent.each do |match| %>
+<h1 class='third'><span class='glyphicon glyphicon-heart'></span> Matches</h1>
+<% if !@matches_sent.empty? or !@matches_received.empty? %>
+  <table class='table'>
+    <thead>
       <tr>
-        <td><img class="thumbnail" src="<%= match.receiver.photo %>" alt="TBD"></td>
-        <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
-        <td>
-          <% if match.status == 'Open' %>
-            <%= link_to 'Chat', show_match_room_path(match) %>
-          <% else %>
-            <%= match.status %>
-          <% end %>
-        </td>
-        <td>
-          <%= form_for match, method: :put do |f| %>
-            <%= f.hidden_field :status, value: 'Closed' %>
-            <%= f.submit 'Break Up', class: 'btn btn-danger' %>
-          <% end %>
-        </td>
+        <th></th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @matches_sent.each do |match| %>
+        <tr>
+          <td><img class="thumbnail" src="<%= match.receiver.photo %>" alt="TBD"></td>
+          <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
+          <td>
+            <% if match.status == 'Pending' %>
+              Request Pending
+            <% else %>
+              <%= match.status %>
+            <% end %>
+          </td>
+          <td>
+            <% if match.status == 'Open' %>
+              <%= link_to 'Chat', show_match_room_path(match), class: 'btn btn-primary' %>
+              <%= form_for match, method: :put, html: {class: "breakup"} do |f| %>
+                <%= f.hidden_field :status, value: 'Closed' %>
+                <%= f.submit 'Break Up', class: 'btn btn-danger' %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <% @matches_received.each do |match| %>
+        <tr>
+          <td><img class="thumbnail" src="<%= match.receiver.photo %>" alt="TBD"></td>
+          <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
+          <td>
+            <% if match.status == 'Pending' %>
+              Pending Approval
+            <% else %>
+              <%= match.status %>
+            <% end %>
+          </td>
+          <td>
+            <% if match.status == 'Open' %>
+              <%= link_to 'Chat', show_match_room_path(match), class: 'btn btn-primary' %>
+              <%= form_for match, method: :put, html: {class: "breakup"} do |f| %>
+                <%= f.hidden_field :status, value: 'Closed' %>
+                <%= f.submit 'Break Up', class: 'btn btn-danger' %>
+              <% end %>
+            <% elsif match.status == 'Pending' %>
+              <%= form_for match, method: :put do |f| %>
+                <%= f.hidden_field :status, value: 'Open' %>
+                <%= f.submit 'Hook Up', class: 'btn btn-success' %>
+              <% end %>
+            <% else %>
+              <%= form_for match, method: :put do |f| %>
+                <%= f.hidden_field :status, value: 'Closed' %>
+                <%= f.submit 'Break Up', class: 'btn btn-danger' %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
   </tbody>
 </table>
+<% else %>
+  <p>No matches yet</p>
+<% end %>
 
-<h1><span class='glyphicon glyphicon-remove'></span>Breakups</h1>
-<table class='table'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @breakups.each do |match| %>
-      <tr>
-        <td><img class="thumbnail" src="<%= match.receiver.photo %>" alt="TBD"></td>
-        <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
-        <td>
-          <%= form_for match, method: :put do |f| %>
-            <%= f.hidden_field :status, value: 'Open' %>
-            <%= f.submit 'Rekindle', class: 'btn btn-info' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1 class='third'><span class="glyphicon glyphicon-user"></span> Recommended For You</h1>
+<% @top_three.each do |user| %>
+  <div class="col-xs-12 col-md-4">
+    <img class='img-circle' src="<%= user.photo %>" alt="user_photo">
+    <br>
+    <%= link_to "See Profile", users_show_path(user) %>
+  </div>
+<% end %>

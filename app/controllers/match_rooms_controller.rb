@@ -5,7 +5,7 @@ class MatchRoomsController < ApplicationController
   def index
     @matches_sent = MatchRoom.where("sender_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
     @matches_received = MatchRoom.where("receiver_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
-    @breakups = MatchRoom.where("receiver_id = ? or sender_id = ? and status='Closed'", session[:user]['id'], session[:user]['id'])
+    @top_three = User.limit(3)
   end
 
   def show
@@ -35,16 +35,15 @@ class MatchRoomsController < ApplicationController
   end
 
   def update
+    puts 'hit server'
     @match_room = MatchRoom.find(params[:id])
     @match_room.status = params["match_room"]["status"]
+    @match_room.save
 
-    puts @match_room.inspect
-
-    if @match_room.save
-      flash[:notice] = ['Success']
-    else
-      flash[:errors] = ['Error']
+    if @match_room.status == 'Open'
+      redirect_to show_match_room_path(@match_room) and return
     end
+
     redirect_to match_room_index_path
   end
 
