@@ -7,4 +7,12 @@ class User < ApplicationRecord
 
   has_one :passive_match, -> { includes :sender }, class_name: 'MatchRoom', foreign_key: 'receiver_id'
   has_one :passive_love, class_name: 'User', through: 'passive_match', source: 'sender'
+
+  validates :first_name, presence:true, length: { minimum: 2 }
+  validates :last_name, presence:true, length: { minimum: 2 }
+  validates :sex, presence:true, inclusion: { in: %w(Male Female Other),
+    message: "%{value} is not a valid sex" }
+  validates :orientation, presence:true, inclusion: { in: %w(Bi-Sexual Straight Gay),
+    message: "%{value} is not a valid orientation" }
+  validates :email, presence:true, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
 end

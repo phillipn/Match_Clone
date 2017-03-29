@@ -1,6 +1,6 @@
 module MatchRoomsHelper
   def chat_room_greeting(sender, receiver)
-    if sender.id == 1
+    if sender.id == session['user']['id']
       sender.first_name = 'you'
     else
       receiver.first_name = 'you'

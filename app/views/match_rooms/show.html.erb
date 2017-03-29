@@ -1,5 +1,5 @@
 <div class="row col-md-8 col-md-offset-2">
-  <h1><%= chat_room_greeting(@match_room.receiver, @match_room.sender) %></h1>
+  <h1 class='center'><span class='glyphicon glyphicon-heart'></span><%= chat_room_greeting(@match_room.receiver, @match_room.sender) %><span class='glyphicon glyphicon-heart'></span></h1>
   <div>
     <% if @match_room.messages.any? %>
       <div id="messages">
