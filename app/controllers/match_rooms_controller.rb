@@ -10,6 +10,10 @@ class MatchRoomsController < ApplicationController
   def show
     @message = Message.new
     @match_room = MatchRoom.find(params[:id])
+    puts @match_room.inspect
+    if @match_room.status == 'Closed' or @match_room.status == 'Pending'
+      redirect_to root_path
+    end
   end
 
   def create

@@ -9,6 +9,7 @@ Array.prototype.remove = function(x) {
 
 App.messages = App.cable.subscriptions.create('MessagesChannel', {
   received: function(data) {
+    console.log(data);
     $("#messages").removeClass('hidden')
     $('#messages').append(this.renderMessage(data));
     $("#messages").scrollTop(100000)
@@ -16,21 +17,26 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
 
   renderMessage: function(data) {
     var last_message = $('.colored-message:last');
-    var last_message_class = $('.colored-message:last').attr('class').split(' ')[0];
+
+    if($('.colored-message:last').length == 0){
+      var last_message_class = 'blue'
+    } else {
+      var last_message_class = $('.colored-message:last').attr('class').split(' ')[0];
+    }
+
     var last_message_text = $('.colored-message:last').children('.panel-header').children('.message_info').text();
 
     var color_choices = ["yellow", "blue"];
 
     if(last_message_text.match(new RegExp(data.sender))){
       var color = last_message_class;
-      var sender_class ='';
     } else {
-      console.log(color_choices, last_message_class);
       color_choices.remove(last_message_class)
       var color = color_choices[0];
-      var sender_class = '';
     }
 
-    return "<div class='" + sender_class +  " dialogue'>" + "<div class='" + color +  " colored-message'>" + "<div class='panel-header'><img class='thumbnail img-thumbnail' src='http://pngimg.com/uploads/face/face_PNG5669.png' alt='Putin'><h3 class='message_info'>" + data.sender + "<small class='new' data-time='1'> " + LocalTime.relativeTimeAgo(new Date(data.created_at)) + "</small></h3></div><div class='panel-body'><p>" + data.content + "</p></div>";
+    console.log(color_choices, last_message_class, last_message, last_message_text);
+
+    return "<div class='dialogue'>" + "<div class='" + color +  " colored-message'>" + "<div class='panel-header'><img class='thumbnail img-thumbnail' src='http://pngimg.com/uploads/face/face_PNG5669.png' alt='Putin'><h4 class='message_info'>" + data.sender + "<small class='new' data-time='1'> " + LocalTime.relativeTimeAgo(new Date(data.created_at)) + "</small></h4></div><div class='panel-body'><p>" + data.content + "</p></div>";
   }
 });
