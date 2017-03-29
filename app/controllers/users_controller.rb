@@ -53,17 +53,18 @@ class UsersController < ApplicationController
     elsif @current_user.personality == "ENTJ"
       relationships = entj
     end
-    @possible_matches = UserInfo.where(personality: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP", "ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP","ESFJ", "ESFP", "ENFP", "INFP"])
+    @possible_matches = UserInfo.where(personality: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP", "ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP","ESFJ", "ESFP", "ENFP", "INFP"]).where.not(user_id: session[:user]['id'])
     @ranking = {}
     @possible_matches.each do |match|
       if relationships[:best].include?(match.personality)
-        @ranking[match.user_id] = 60
+        @ranking[match.user_id] = 500/(relationships[:best].length)
       elsif relationships[:ok].include?(match.personality)
-        @ranking[match.user_id] = 30
+        @ranking[match.user_id] = 250/(relationships[:ok].length)
       else
-        @ranking[match.user_id] = 10
+        @ranking[match.user_id] = 100/(relationships[:worst].length)
       end
     end
+    puts "PERSONALITY RANKINGS ========== #{@ranking}"
     points = 5
     @possible_matches.each do |match|
       match_age = Date.today.year - match.birthday.year
@@ -149,61 +150,83 @@ class UsersController < ApplicationController
     id = UserInfo.find_by(user_id: session[:user]['id'])
     id = id.id
     if params[:kids].downcase == 'yes'
+      puts "TRUE"
       params[:kids] = true
     else
+      puts "FALSE"
       params[:kids] = false
     end
     if params[:date_kids].downcase == 'yes'
+      puts "TRUE"
       params[:date_kids] = true
     else
+      puts "FALSE"
       params[:date_kids] = false
     end
     if params[:want_kids].downcase == 'yes'
+      puts "TRUE"
       params[:want_kids] = true
     else
+      puts "FALSE"
       params[:want_kids] = false
     end
     if params[:date_politics].downcase == 'yes'
+      puts "TRUE"
       params[:date_politics] = true
     else
+      puts "FALSE"
       params[:date_politics] = false
     end
     if params[:smoke].downcase == 'yes'
+      puts "TRUE"
       params[:smoke] = true
     else
+      puts "FALSE"
       params[:smoke] = false
     end
     if params[:date_smoke].downcase == 'yes'
+      puts "TRUE"
       params[:date_smoke] = true
     else
+      puts "FALSE"
       params[:date_smoke] = false
     end
     if params[:tattoo].downcase == 'yes'
+      puts "TRUE"
       params[:tattoo] = true
     else
+      puts "FALSE"
       params[:tattoo] = false
     end
     if params[:date_tattoo].downcase == 'yes'
+      puts "TRUE"
       params[:date_tattoo] = true
     else
+      puts "FALSE"
       params[:date_tattoo] = false
     end
     if params[:date_religion].downcase == 'yes'
+      puts "TRUE"
       params[:date_religion] = true
     else
+      puts "FALSE"
       params[:date_religion] = false
     end
     if params[:pet].downcase == 'yes'
+      puts "TRUE"
       params[:pet] = true
     else
+      puts "FALSE"
       params[:pet] = false
     end
     if params[:date_pet].downcase == 'yes'
+      puts "TRUE"
       params[:date_pet] = true
     else
+      puts "FALSE"
       params[:date_pet] = false
     end
-    puts "updated params #{params}"
+    puts "UPDATED PARAMS #{params}"
     info = UserInfo.update(id, :max_age => params[:min_age], :min_age => params[:max_age], :hair => params[:hair], :eye => params[:eye], :education => params[:education], :kids => params[:kids], :date_kids => params[:date_kids], :want_kids => params[:want_kids], :politics => params[:politics], :date_politics => params[:date_politics], :smoke => params[:smoke], :date_smoke => params[:date_smoke], :tattoo => params[:tattoo], :date_tattoo => params[:date_tattoo], :religion => params[:religion], :date_religion => params[:date_religion], :pet => params[:pet], :date_pet => params[:date_pet], :birthday => params[:birthday])
     if info.errors.full_messages[0]
      flash[:errors] = info.errors.full_messages
