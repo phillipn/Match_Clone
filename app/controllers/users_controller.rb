@@ -2,7 +2,91 @@ class UsersController < ApplicationController
   before_action :check_if_logged_in, except: [:new, :create, :login]
 
   def index
-    @users = User.all
+    current_user = UserInfo.where(user_id: session[:user]['id'])
+    istj = {best: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP" ], ok: ["ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP"], worst: ["ESFJ", "ESFP", "ENFP", "INFP"], population: 0.14}
+    istp = {best: ["ESTJ", "ISTJ", "ENTJ", "ESTP"], ok: ["ESFJ", "ISFP", "INTJ", "ISFJ"], worst: ["ISTP", "ESFP", "ENTP", "INTP", "ENFJ", "INFJ", "ENFP", 'INFP'], population: .06}
+    estp= {best: ["ISTJ", "ESTP", "ISTP", "ESFP"],ok: ["ESTJ", "ISFP", "ENTJ", "ENTP", "INTP", "ISFJ"],worst: ["ESFJ", "INTJ", "ENFJ", "INFJ", "ENFP", "INFP"],population: 0.06}
+    estj = {best: ["ISTJ", "ESFJ", "ISFJ", "ENTJ", "INTJ", "ISTP"],ok: ["ENTP", "INTP", "ESTP", "ESFP", "ISFP"],worst: ["ESTJ", "ENFJ", "INFJ", "INFP", "ENFP"],population: 0.11}
+    isfj = {best: ["ISFJ", "ENFJ", "ESTJ"],ok: ["ESFJ", "ESTP", "ISFP", "INFJ", "INFP", "ESFP", "ISTJ", "ISFP"],worst: ["ENTJ", "INTJ", "ENTP", "INTP", "ENFP"],population: .105}
+    isfp= {best: ["ESFP", "ISFP"],ok: ["ESTP", "ESTJ", "ESFJ", "ISTP", "ENFJ", "INFJ", "INFP", "ISFJ", "ISTJ", "ENFP"],worst: ["ENTJ", "INTJ", "ENTP", "INTP"],population: 0.06}
+    espf = {best: ["ESTP", "ISFP"],ok: "ESTJ", "ESFJ", "ISFJ", "ESFP", "ENTP", "ENFJ", "INFJ", "ENFP", "INFP"[],worst: ["ISTJ", "ISTP", "ENTJ", "INTJ", "INTP"],population: 0.075}
+    esfj= {best: ["ESTJ", "ENFP"],ok: ["ISFJ", "ESFJ", "ENFJ", "INFP", "ISFP", "ISTP", "ESFP"],worst: ["ESTP", "ENTJ", "INTJ", "ENTP", "INTP", "INFJ", "ISTJ"],population: 0.11}
+    infj= {best: ["ENTP", "ENFP", "INFJ", "INFP", "ENFJ"],ok: ["ISFJ", "ESFP", "ISFP", "ENTJ", "INTJ", "INTP", "ISTJ"],worst: ["ESTJ", "ESFJ", "ESTP", "ISTP"],population: 0.025}
+    infp= {best: ["ENFP", "INFP", "ENFJ", "INFJ"],ok: ["ISFJ", "ESFJ", "ESFP", "ISFP", "ENTP", "INTP"],worst: ["ESTJ", "ISTJ", "ESTP", "ISTP", "ENTJ", "INTJ"],population:  0.045}
+    enfp = {best: ["INFJ", "INFP", "ENFJ", "ENFP", "ESFJ"],ok: ["ENTJ", "ENTP", "INTJ", "INTP","ESFP", "ISFP"],worst: ["ISTJ", "ESTJ", "ISTP", "ESTP", "ISFJ"],population: 0.07}
+    enfj= {best: ["ISFJ", "ENFJ", "ENTJ", "INFJ", "ENFP", "INFP"],ok: ["ESFJ", "ESFP", "ISFP", "INTP", "ISTJ", "ENTP"],worst: ["ESTJ", "ESTP", "ISTP", "INTJ"],population: 0.04}
+    intj= {best: ["ESTJ", "INTJ", "ISTP", "ENTJ"],ok: ["INTP", "INFJ", "INFP", "ENFP"],worst: ["ESFJ", "ISFJ", "ESTP", "ESFP", "ISFP", "ENTP", "INFP", "ENFJ"],population: 0.035}
+    intp= {best: ["ENTP", "INTP", "INTJ"],ok: ["ESTJ", "ISTJ", "ESTP", "ENTJ", "ENFJ", "INFJ", "ENFP", "INFP"],worst: ["ESFJ", "ISFJ", "ISTP", "ESFP", "ISFP"],population: 0.055}
+    entp= {best: ["ENTP", "INTP", "INFJ"],ok: ["ESTJ", "ISTJ", "ESTP", "ESFP", "ENTJ", "ENFP", "INFP", "ENFJ"],worst: ["ESFJ", "ISFJ", "ISTP", "ISFP", "INTJ"],population: 0.06}
+    entj = {best: ["ESTJ", "ISTP", "ENTJ", "ENFJ", "INTJ"],ok: ["ISTJ", "ESTP", "ENTP", "INTP", "INFJ", "ENFP"],worst: ["ESFJ", "ISFJ", "ESFP", "ISFP", "INFP"],population: 0.04}
+    if current_user.personality == "ISTJ"
+      relationships = istj
+    elsif current_user.personality == "ISTP"
+      relationships = istp
+    elsif current_user.personality == "ESTP"
+      relationships = estp
+    elsif current_user.personality == "ESTJ"
+      relationships = estj
+    elsif current_user.personality == "ISFJ"
+      relationships = isfj
+    elsif current_user.personality == "ISFP"
+      relationships = isfj
+    elsif current_user.personality == "ESPF"
+      relationships = espf
+    elsif current_user.personality == "ESFJ"
+      relationships = esfj
+    elsif current_user.personality == "INFJ"
+      relationships = infj
+    elsif current_user.personality == "INFP"
+      relationships = infg
+    elsif current_user.personality == "ENFG"
+      relationships = enfg
+    elsif current_user.personality == "ENFJ"
+      relationships = enfj
+    elsif current_user.personality == "INTJ"
+      relationships = intj
+    elsif current_user.personality == "INTP"
+      relationships = intp
+    elsif current_user.personality == "ENTP"
+      relationships = entp
+    elsif current_user.personality == "ENTJ"
+      relationships = entj
+    end
+    @possible_matches = UserInfo.where(Personality: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP", "ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP","ESFJ", "ESFP", "ENFP", "INFP"])
+    @ranking = {}
+    @possible_matches.each do |match|
+      if relationships[:best].include?(match.personality)
+        @ranking[match.user_id] = 60
+      elsif relationships[:ok].include?(match.personality)
+        @ranking[match.user_id] = 30
+      else
+        @ranking[match.user_id] = 10
+      end
+    end
+    points = 5
+    @possible_matches.each do |match|
+      if current_user.smoke && match.date_smoke || !current_user.smoke
+        @ranking[match.user_id] += points
+      elsif current_user.kids && match.date_kids || !current_user.kids
+         @ranking[match.user_id] += points
+      elsif current_user.want_kids && match.want_kids
+         @ranking[match.user_id] += points
+      elsif current_user.tattoo && match.date_tattoo || !current_user.tattoo
+         @ranking[match.user_id] += points
+      elsif current_user.date_religion && match.date_religion || !current_user.date_religion && current_user.religion == match.religion || !match.date_religion && current_user.religion == match.religion
+         @ranking[match.user_id] += points
+      elsif current_user.pet && match.date_pet || !current_user.pet
+         @ranking[match.user_id] += points
+      elsif current_user.date_politics && match.date_politics || !current_user.date_politics && current_user.politics == match.politics || !match.date_politics && current_user.politics == match.politics
+         @ranking[match.user_id] += points
+      end
+    end
+
+
+#  "max_age"
+#  "min_age"
+
+
   end
 
   def post_personality_survey
