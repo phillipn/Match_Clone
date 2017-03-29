@@ -225,14 +225,20 @@ class UsersController < ApplicationController
         redirect_to '/users/new'
       else
         userinfo = UserInfo.create(user_id:user.id)
-        if userinfo.errors.full_messages[0]
+      if userinfo.errors.full_messages[0]
+        flash[:errors] = user.errors.full_messages
+        redirect_to '/users/new'
+      else
+        userprof = Profile.create(user_id:user.id)
+        if userprof.errors.full_messages[0]
           flash[:errors] = user.errors.full_messages
           redirect_to '/users/new'
         else
           session[:user] = {first_name: user.first_name, id: user.id}
           redirect_to '/survey/personality'
         end
-      end
+       end
+     end
     else
       flash[:errors] = ["Passwords Do Not Match"]
       redirect_to '/users/new'
@@ -263,5 +269,33 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @userinfo = UserInfo.find_by(user_id: params[:id])
+    @userprof = Profile.find_by(user_id: params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+
+  end
+
+  def update
+      userinfo = UserInfo.find_by(user_id: params[:id])
+      userinfo.personality = params[:personality]
+      userinfo.max_age = params[:max_age]
+      userinfo.min_age = params[:min_age]
+      userinfo.save
+      userprof = Profile.find_by(user_id: params[:id])
+      userprof.about_me = params[:about_me]
+      userprof.ideal_mate = params[:ideal_mate]
+      userprof.job = params[:job]
+      userprof.religion = params[:religion]
+      userprof.hobbies = params[:hobbies]
+      userprof.save
+      redirect_to users_show_path
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:personality,:max_age,:min_age,:job,:hobbies,:religion,:ideal_mate,:about_me,:password,:password_confirm)
   end
 end

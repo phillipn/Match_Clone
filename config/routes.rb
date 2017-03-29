@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/survey/personality' => 'users#post_personality_survey', as: "users_post_personality_survey"
   get '/survey/personal' => 'users#personal_survey'
   post '/survey/personal' => 'users#post_personal_survey'
+  get '/users/:id/edit/profile' => 'users#edit', as: "users_edit"
+  patch '/users/:id/update' => 'users#update'
 
 
   get 'match_rooms/' => 'match_rooms#index', as: "match_room_index"
