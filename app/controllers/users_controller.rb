@@ -271,19 +271,30 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @userinfo = UserInfo.find_by(user_id: params[:id])
     @userprof = Profile.find_by(user_id: params[:id])
+    puts @userprof.inspect
   end
 
   def edit
     @user = User.find(params[:id])
-
+    @userinfo = UserInfo.find_by(user_id: params[:id])
+    @userprof = Profile.find_by(user_id: params[:id])
+    puts @user.inspect
+    puts @userinfo.inspect
+    puts @userprof.inspect
   end
 
   def update
+      puts params
+      user = User.find_by(id: params[:id])
+      user.picture = params[:picture]
+      user.save
+
       userinfo = UserInfo.find_by(user_id: params[:id])
       userinfo.personality = params[:personality]
       userinfo.max_age = params[:max_age]
       userinfo.min_age = params[:min_age]
       userinfo.save
+
       userprof = Profile.find_by(user_id: params[:id])
       userprof.about_me = params[:about_me]
       userprof.ideal_mate = params[:ideal_mate]
@@ -291,6 +302,7 @@ class UsersController < ApplicationController
       userprof.religion = params[:religion]
       userprof.hobbies = params[:hobbies]
       userprof.save
+
       redirect_to users_show_path
   end
 
