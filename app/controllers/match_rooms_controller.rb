@@ -3,8 +3,9 @@ class MatchRoomsController < ApplicationController
   before_action :check_if_logged_in
 
   def index
-    @matches_sent = MatchRoom.where("sender_id = ?", session[:user]['id'])
-    @matches_received = MatchRoom.where("receiver_id = ?", session[:user]['id'])
+    @matches_sent = MatchRoom.where("sender_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
+    @matches_received = MatchRoom.where("receiver_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
+    @top_three = User.limit(3)
   end
 
   def show
@@ -34,16 +35,16 @@ class MatchRoomsController < ApplicationController
   end
 
   def update
+    puts 'hit server'
     @match_room = MatchRoom.find(params[:id])
     @match_room.status = params["match_room"]["status"]
+    @match_room.save
 
-    if @match_room.save
-      flash[:notice] = ['Success']
-      redirect_to match_room_path(@match_room)
-    else
-      flash[:errors] = ['Error']
-      redirect_to match_room_index_path
+    if @match_room.status == 'Open'
+      redirect_to show_match_room_path(@match_room) and return
     end
+
+    redirect_to match_room_index_path
   end
 
   private

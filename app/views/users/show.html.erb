@@ -1,1 +1,51 @@
-<h1>show</h1>
+<div class="container-fluid well span6">
+  <div class="row-fluid">
+    <div class="span2" >
+      <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+    </div>
+
+    <div class="span6">
+      <h3><%=@user.first_name%> <%=@user.last_name%></h3>
+      <h6>Email: <%=@user.email%></h6>
+      <h6>Occupation: <%=@userprof.job%></h6>
+      <h6>Sex: <%=@user.sex%></h6>
+    </div>
+    <div class="span2">
+      <%if session[:user]['id'] == @user.id%>
+      <a href="/users/<%=@user.id%>/edit/profile">Edit Profile</a>
+      <%else%>
+
+      <%end%>
+  </div>
+ </div>
+</div>
+
+<div class="jumbotron text-center">
+  <h1>About Me</h1>
+  <p><%=@userprof.about_me%></p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+        <div class="box">
+      <h3>Bio:</h3>
+
+      <p>Email: <%=@user.email%></p>
+      <p>Personality:<%=@userinfo.personality%> </p>
+      <p>Sex: <%=@user.sex%></p>
+      <p>Orientation: <%=@user.orientation%></p>
+    </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="box">
+      <h3>Interests:</h3>
+      <p>Hobbies: <%=@userprof.hobbies%></p>
+      <p>Max Age:<%=@userinfo.max_age%></p>
+      <p>Min Age:<%=@userinfo.min_age%></p>
+      <p>Religion:<%=@userprof.religion%></p>
+      <p>My Ideal Mate:<%=@userprof.ideal_mate%></p>
+    </div>
+    </div>
+  </div>
+</div>

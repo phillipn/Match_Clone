@@ -1,0 +1,41 @@
+<div class="container">
+
+<div class="col-md-5">
+    <div class="form-area">
+        <form role="form" action="/users/<%=@user.id%>/update" method="POST">
+          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+          <input type="hidden" name="_method" value="patch">
+        <br style="clear:both">
+                    <h3 style="margin-bottom: 25px; text-align: center;">Edit Profile</h3>
+          <br>
+          <div class="form-group">
+            <input type="text" class="form-control" id="personality" name="personality" placeholder="Personality">
+          </div>
+          <div class="form-group">
+						<input type="text" class="form-control" id="subject" name="max_age" placeholder="Max Age">
+					</div>
+          <div class="form-group">
+						<input type="text" class="form-control" id="subject" name="min_age" placeholder="Min Age">
+					</div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="subject" name="job" placeholder="Occupation">
+          </div>
+          <div class="form-group">
+						<input type="text" class="form-control" id="subject" name="hobbies" placeholder="Hobbies">
+					</div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="subject" name="religion" placeholder="Religion">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="subject" name="ideal_mate" placeholder="Ideal Mate">
+          </div>
+          <div class="form-group">
+          <textarea class="form-control" type="textarea" name="about_me" placeholder="About Me" maxlength="140" rows="7"></textarea>
+              <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+          </div>
+          <br>
+        <input type="submit" name="" value="Submit Form">
+        </form>
+    </div>
+</div>
+</div>

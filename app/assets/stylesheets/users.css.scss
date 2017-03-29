@@ -1,3 +1,45 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+  background-color: grey;
+}
+
+.jumbotron{
+    background-color: white;
+    color:black;
+}
+.box{
+    background-color: black;
+    color: white;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding:20px;
+    margin-left: 110%;
+    width: 100%;
+}
+.row-fluid{
+  margin-left: 40%;
+  margin-right: auto;
+  display: inline-block;
+  color: black;
+
+
+}
+
+.row{
+  width: 100%;
+  background-color: white;
+}
+
+
+.red{
+    color:red;
+    }
+.form-area
+{
+    background-color: #FAFAFA;
+	padding: 10px 40px 60px;
+	margin: 10px 0px 60px;
+	border: 1px solid GREY;
+	}
