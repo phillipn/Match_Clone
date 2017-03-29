@@ -1,10 +1,10 @@
-<div class="<%= message.sender_id == session[:user]['id'] ? 'sender' : '' %> dialogue">
+<div class="dialogue">
   <div class="<%= message.sender_id == session[:user]['id'] ? 'yellow' : 'blue' %> colored-message">
     <div class="panel-header">
       <img class='thumbnail img-thumbnail' src='http://pngimg.com/uploads/face/face_PNG5669.png' alt='Putin'>
-      <h3 class='message_info'>
+      <h4 class='message_info'>
         <%= message.sender.first_name %> <small><%= local_relative_time(message.created_at, type: 'time-ago') %></small>
-      </h3>
+      </h4>
     </div>
     <div class="panel-body">
       <p><%= message.content %></p>
