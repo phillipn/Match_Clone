@@ -1,12 +1,26 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Courgette');
 
 .main{
   margin-top: 100px;
+
 }
 .nav li, .nav a {
-  color: white !important
+  color: #1AD1FF !important;
 }
+
+.nav li{
+  margin-right: 15px;
+  margin-top: 20px;
+}
+
+.navbar{
+  background-color: #600080;
+}
+
+
+
 #messages{
   height: 600px;
   overflow: scroll;
@@ -61,6 +75,7 @@
 .message_submit{
   margin-top: 5px;
 }
+
 .third{
   padding-top: 20px;
 }
