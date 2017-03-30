@@ -1,5 +1,7 @@
 class PictureUploader < CarrierWave::Uploader::Base
-
+  def default_url(*args)
+    "/uploads/user/picture/default.png"
+  end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick

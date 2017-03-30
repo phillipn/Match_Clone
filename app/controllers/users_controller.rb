@@ -216,7 +216,7 @@ class UsersController < ApplicationController
 
   def create
     if params[:password] == params[:password_confirm]
-      user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], sex: params[:sex], orientation: params[:orientation])
+      user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], sex: params[:sex], orientation: params[:orientation], picture: '/uploads/user/picture/default.jpg')
       if user.errors.full_messages[0]
         flash[:errors] = user.errors.full_messages
         redirect_to '/users/new'
@@ -265,6 +265,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @match_room = MatchRoom.new
     @user = User.find(params[:id])
     @userinfo = UserInfo.find_by(user_id: params[:id])
     @userprof = Profile.find_by(user_id: params[:id])
