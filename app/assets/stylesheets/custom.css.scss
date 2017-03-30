@@ -3,7 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
 .main{
-  margin-top: 100px;
+  margin-top: 15px;
+  padding: 15px;
+  min-height: calc(100vh - 152px);
 
 }
 .nav li, .nav a {
@@ -22,10 +24,22 @@
 
 
 #messages{
-  height: 600px;
+  height: 500px;
   overflow: scroll;
   position: relative;
   margin-bottom: 40px;
+}
+.row{
+  padding: 30px;
+}
+
+footer{
+  height: 60px;  /* footer height */
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  background-color: #600080;
 }
 
 .thumbnail{
@@ -56,6 +70,7 @@
 .center{
   text-align: center;
   margin-bottom: 40px;
+  color: white;
 }
 .glyphicon-heart{
   color: red;
