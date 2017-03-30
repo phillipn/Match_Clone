@@ -19,7 +19,7 @@ class MatchRoomsController < ApplicationController
 
   def create
     matches = matched?(session[:user]['id'], match_room_params[:receiver_id])
-    redirect_to root_path and return if matches
+    redirect_to request.referer || root_path and return if matches
 
     @match_room = MatchRoom.new(match_room_params)
     @match_room.status = 'Pending'

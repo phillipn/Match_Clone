@@ -15,6 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if session[:user] %>
+          <li><h5><%= link_to "Main Page", root_path %></h5></li>
           <li><h5><%= link_to "Match Central", match_room_index_path %></h5></li>
           <li><h5><%= link_to "Log out", users_logout_path, method: :post %></h5></li>
           <li><h5><a href="/users/<%=session[:user]['id']%>">Profile</a></h5></li>

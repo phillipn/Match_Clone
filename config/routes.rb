@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'users#index', as: 'root'
   get '/users/new' => 'users#new', as: "users_new"
   post'/users' => 'users#create', as: "users_create"
   post '/login' => 'users#login', as: "users_login"

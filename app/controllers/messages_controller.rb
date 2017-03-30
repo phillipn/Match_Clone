@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
         content: @message.content,
         created_at: @message.created_at,
         room_id: @match_room.id,
-        sender: @message.sender.first_name,
+        sender: @message.sender,
         receiver: @match_room.receiver,
         user_id: session[:user]['id'],
         sender_id: @message.sender.id

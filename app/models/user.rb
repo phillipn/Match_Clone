@@ -1,12 +1,14 @@
 class User < ApplicationRecord
   has_secure_password
-  has_one :location
+  has_one :location, dependent: :destroy
+  has_one :user_info, dependent: :destroy
+  has_one :profile, dependent: :destroy
   mount_uploader :picture, PictureUploader
-  has_one :active_match, -> { includes :receiver }, class_name: 'MatchRoom', foreign_key: 'sender_id'
-  has_one :active_love, class_name: 'User', through: 'active_match', source: 'receiver'
+  has_one :active_match, -> { includes :receiver }, class_name: 'MatchRoom', foreign_key: 'sender_id', dependent: :destroy
+  has_one :active_love, class_name: 'User', through: 'active_match', source: 'receiver', dependent: :destroy
 
-  has_one :passive_match, -> { includes :sender }, class_name: 'MatchRoom', foreign_key: 'receiver_id'
-  has_one :passive_love, class_name: 'User', through: 'passive_match', source: 'sender'
+  has_one :passive_match, -> { includes :sender }, class_name: 'MatchRoom', foreign_key: 'receiver_id', dependent: :destroy
+  has_one :passive_love, class_name: 'User', through: 'passive_match', source: 'sender', dependent: :destroy
 
   validates :first_name, presence:true, length: { minimum: 2 }
   validates :last_name, presence:true, length: { minimum: 2 }

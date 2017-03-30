@@ -15,9 +15,12 @@
   </div>
     <div class="card-block">
       <%if session[:user]['id'] == @user.id%>
-      <a href="/users/<%=@user.id%>/edit/profile">
-        <button type="button" class="btn btn-primary btn-sm">Edit Profile</button>
-      </a>
+        <a class='btn btn-primary' href="/users/<%=@user.id%>/edit/profile">Edit Profile</a>
+      <%else%>
+        <%= form_for @match_room do |f| %>
+          <%= f.hidden_field :receiver_id, value: @user.id %>
+          <%= f.submit 'Get a room' %>
+        <% end %>
       <%end%>
     </div>
   </div>
@@ -37,7 +40,11 @@
       <div class="box">
         <h3>Bio:</h3>
         <p>Email: <%=@user.email%></p>
+<<<<<<< HEAD
         <p>Hobbies: <%=@userprof.hobbies%></p>
+=======
+        <p>Personality:<%=@userinfo.personality%> </p>
+>>>>>>> 913a0bb8bfafa58b4ea7e41c9582eb58b7241a25
         <p>Sex: <%=@user.sex%></p>
         <p>Orientation: <%=@user.orientation%></p>
       </div>
@@ -73,11 +80,10 @@
 </div>
 <br>
 <div id="footer" class="container">
-     <div class="img-responsive">
-      <img src="http://wac.450f.edgecastcdn.net/80450F/mix97-3.com/files/2013/04/Happy-Couple-e1366762193936.jpg" class="img-thumbnail" alt="Cinque Terre" width="500" height="336">
-    </div>
-
-     <div class="img-responsive">
-      <img src="http://www.eve.com.mt/wp-content/uploads/2015/07/have-you-found-your-soulmate.jpg" class="img-thumbnail" alt="Cinque Terre" width="600" height="336">
-    </div>
+  <div class="img-responsive">
+    <img src="http://wac.450f.edgecastcdn.net/80450F/mix97-3.com/files/2013/04/Happy-Couple-e1366762193936.jpg" class="img-thumbnail" alt="Cinque Terre" width="500" height="336">
+  </div>
+  <div class="img-responsive">
+    <img src="http://www.eve.com.mt/wp-content/uploads/2015/07/have-you-found-your-soulmate.jpg" class="img-thumbnail" alt="Cinque Terre" width="500" height="336">
+  </div>
 </div>

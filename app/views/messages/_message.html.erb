@@ -1,7 +1,7 @@
 <div class="dialogue">
   <div class="<%= message.sender_id == session[:user]['id'] ? 'yellow' : 'blue' %> colored-message">
     <div class="panel-header">
-      <img class='thumbnail img-thumbnail' src='<%= message.sender.photo %>' alt='TBD'>
+      <img class='thumbnail img-thumbnail' src="<%= message.sender.picture %>" alt='TBD'>
       <h4 class='message_info'>
         <%= message.sender.first_name %> <small><%= local_relative_time(message.created_at, type: 'time-ago') %></small>
       </h4>

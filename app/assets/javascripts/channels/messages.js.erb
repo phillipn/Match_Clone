@@ -11,7 +11,7 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
   received: function(data) {
     var pathname = window.location.pathname;
     var id = (pathname.match(/(\d+)/g));
-    
+
     if (data.room_id == id[0]) {
       $("#messages").removeClass('hidden')
       $('#messages').append(this.renderMessage(data));
@@ -32,13 +32,12 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
 
     var color_choices = ["yellow", "blue"];
 
-    if(last_message_text.match(new RegExp(data.sender))){
+    if(last_message_text.match(new RegExp(data.sender.first_name))){
       var color = last_message_class;
     } else {
       color_choices.remove(last_message_class)
       var color = color_choices[0];
     }
-
-    return "<div class='dialogue'>" + "<div class='" + color +  " colored-message'>" + "<div class='panel-header'><img class='thumbnail img-thumbnail' src='" + data.sender.photo + "' alt='Putin'><h4 class='message_info'>" + data.sender + "<small class='new' data-time='1'> " + LocalTime.relativeTimeAgo(new Date(data.created_at)) + "</small></h4></div><div class='panel-body'><p>" + data.content + "</p></div>";
+    return "<div class='dialogue'>" + "<div class='" + color +  " colored-message'>" + "<div class='panel-header'><img class='thumbnail img-thumbnail' src='" + data.sender.picture.url + "' alt='Putin'><h4 class='message_info'>" + data.sender.first_name + "<small class='new' data-time='1'> " + LocalTime.relativeTimeAgo(new Date(data.created_at)) + "</small></h4></div><div class='panel-body'><p>" + data.content + "</p></div>";
   }
 });
