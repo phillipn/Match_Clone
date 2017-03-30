@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   has_one :location
+  has_one :user_info
+  has_one :profile
   mount_uploader :picture, PictureUploader
   has_one :active_match, -> { includes :receiver }, class_name: 'MatchRoom', foreign_key: 'sender_id'
   has_one :active_love, class_name: 'User', through: 'active_match', source: 'receiver'
