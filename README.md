@@ -14,7 +14,6 @@
 
 ## To-Do / Bugs
   * Filterrific on index page
-  * search matches by nearby
   * bug with update on profile about_me
   * force user to complete surveys
-  * seed.rb file
+  * have geokit take in ip address and geocode lat long and address

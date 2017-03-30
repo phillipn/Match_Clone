@@ -278,7 +278,7 @@ class UsersController < ApplicationController
     @userprof = Profile.find_by(user_id: params[:id])
     puts @user.inspect
     puts @userinfo.inspect
-    puts @userprof.inspect
+    puts "USER PROFILE====== #{@userprof.inspect}"
   end
 
   def update
