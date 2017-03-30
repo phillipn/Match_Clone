@@ -1,53 +1,86 @@
 <div class="row">
-  <div class="col-xs-6 col-sm-6 col-lg-6">
+  <div class="col-xs-4 col-sm-4 col-lg-4">
     <h3>Login</h3>
     <form action="/login" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <label for="email">Email</label>
-      <input type="email" name="email">
-      <br>
-      <label for="password">Password</label>
-      <input type="password" name="password">
-      <br>
-      <input type="submit" value="Login">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
     </form>
   </div>
-  <div class="col-xs-6 col-sm-6 col-lg-6">
+  <div class="col-xs-8 col-sm-8 col-lg-8">
     <h3>Register a New User</h3>
     <form action="/users" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <label for="email">Email</label>
-      <input type="email" name="email">
-      <br>
-      <label for="first_name">First Name</label>
-      <input type="text" name="first_name">
-      <br>
-      <label for="last_name">Last Name</label>
-      <input type="text" name="last_name">
-      <br>
-      <label for="sex">Sex</label>
-      <select name="sex">
-        <option disabled selected value> -- select one -- </option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-      <br>
-      <label for="orientation">Sexual Orientation</label>
-      <select name="orientation">
-        <option disabled selected value> -- select one -- </option>
-        <option value="Bi-Sexual">Bi-Sexual</option>
-        <option value="Straight">Straight</option>
-        <option value="Gay">Gay</option>
-      </select>
-      <br>
-      <label for="passowrd">Password</label>
-      <input type="password" name="password">
-      <br>
-      <label for="password_confirm">Confirm Password</label>
-      <input type="password" name="password_confirm">
-      <br>
-      <input type="submit" value="Register user">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputfirst_name">First Name</label>
+        <input type="text" class="form-control" id="exampleInputfirst_name" placeholder="Enter First Name" name="first_name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputlast_name">First Name</label>
+        <input type="text" class="form-control" id="exampleInputlast_name" placeholder="Enter Last Name" name="last_name">
+      </div>
+      <fieldset class="form-group">
+        <legend>What is Your Sex?</legend>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="sex" value="Male">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="sex" value="Female">
+            Female
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="sex" value="Other">
+            Other
+          </label>
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <legend>What is Your Sexual Orientation?</legend>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="orientation" value="Bi-Sexual">
+            Bi-Sexual
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="orientation" value="Straight">
+            Straight
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="orientation" value="Gay">
+            Gay
+          </label>
+        </div>
+      </fieldset>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Confirm Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" name="password_confirm">
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
     </form>
   </div>
 </div>
