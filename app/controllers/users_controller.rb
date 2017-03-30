@@ -287,9 +287,10 @@ class UsersController < ApplicationController
       user.save
 
       userinfo = UserInfo.find_by(user_id: params[:id])
-      userinfo.personality = params[:personality]
+      #userinfo.personality = params[:personality]
       userinfo.max_age = params[:max_age]
       userinfo.min_age = params[:min_age]
+      userinfo.education = params[:education]
       userinfo.save
 
       userprof = Profile.find_by(user_id: params[:id])
@@ -301,6 +302,17 @@ class UsersController < ApplicationController
       userprof.save
 
       redirect_to users_show_path
+  end
+
+  def accountUpdate
+    user = User.find(session[:user]['id'])
+    if params[:password] == params[:password_confirm]
+      user.password = params[:password]
+      user.email = params[:email]
+      user.save
+    else
+      flash[:errors]= user.errors.full_messages.inspect
+    end
   end
 
   private
