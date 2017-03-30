@@ -1,4 +1,6 @@
 
+  <h1 class="deepshd"> Match Central </h1>
+  <div class="central">
 <h1 class='third'><span class='glyphicon glyphicon-heart'></span> Matches</h1>
 <% if !@matches_sent.empty? or !@matches_received.empty? %>
   <table class='table'>
@@ -79,3 +81,4 @@
     <%= link_to "See Profile", users_show_path(user) %>
   </div>
 <% end %>
+</div>
