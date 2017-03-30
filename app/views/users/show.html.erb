@@ -1,54 +1,83 @@
+
 <div class="container-fluid well span6">
   <div class="row-fluid">
     <div class="span2" >
       <img src="<%= @user.picture %>" class="img-circle">
     </div>
-
-    <div class="span6">
-      <h3><%=@user.first_name%> <%=@user.last_name%></h3>
-      <h6>Email: <%=@user.email%></h6>
-      <h6>Occupation: <%=@userprof.job%></h6>
-      <h6>Sex: <%=@user.sex%></h6>
+    <div class="card-block">
+      <h4><%=@user.first_name%> <%=@user.last_name%></h4>
     </div>
-    <div class="span2">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><h5>Email: <%=@user.email%></h5></li>
+      <li class="list-group-item"><h5>Occupation: <%=@userprof.job%></h5></li>
+      <li class="list-group-item"><h5>Sex: <%=@user.sex%></h5></li>
+    </ul>
+    <div class="card-block">
       <%if session[:user]['id'] == @user.id%>
-        <a href="/users/<%=@user.id%>/edit/profile">Edit Profile</a>
+        <a class='btn btn-primary' href="/users/<%=@user.id%>/edit/profile">Edit Profile</a>
       <%else%>
         <%= form_for @match_room do |f| %>
           <%= f.hidden_field :receiver_id, value: @user.id %>
           <%= f.submit 'Get a room' %>
         <% end %>
       <%end%>
+    </div>
   </div>
- </div>
 </div>
-
 <div class="jumbotron text-center">
-  <h1>About Me</h1>
-  <p><%=@userprof.about_me%></p>
+  <div class="abtmebox">
+    <h1>About Me</h1>
+    <p><%=@userprof.about_me%></p>
+  </div>
 </div>
 
-<div class="container">
+<div id="profContainer" class="container">
   <div class="row">
     <div class="col-sm-3">
       <div class="box">
-      <h3>Bio:</h3>
-
-      <p>Email: <%=@user.email%></p>
-      <p>Personality:<%=@userinfo.personality%> </p>
-      <p>Sex: <%=@user.sex%></p>
-      <p>Orientation: <%=@user.orientation%></p>
-    </div>
+        <h3>Bio:</h3>
+        <p>Email: <%=@user.email%></p>
+        <p>Personality:<%=@userinfo.personality%> </p>
+        <p>Sex: <%=@user.sex%></p>
+        <p>Orientation: <%=@user.orientation%></p>
+      </div>
+    <div class="col-sm-3">
+      <div class="box">
+        <h3>Interests:</h3>
+        <p>Hobbies: <%=@userprof.hobbies%></p>
+        <p>Max Age: <%=@userinfo.max_age%></p>
+        <p>Min Age: <%=@userinfo.min_age%></p>
+        <p>Religion: <%=@userprof.religion%></p>
+        <p>My Ideal Mate: <%=@userprof.ideal_mate%></p>
+      </div>
     </div>
     <div class="col-sm-3">
-        <div class="box">
-      <h3>Interests:</h3>
-      <p>Hobbies: <%=@userprof.hobbies%></p>
-      <p>Max Age:<%=@userinfo.max_age%></p>
-      <p>Min Age:<%=@userinfo.min_age%></p>
-      <p>Religion:<%=@userprof.religion%></p>
-      <p>My Ideal Mate:<%=@userprof.ideal_mate%></p>
+      <div class="box">
+        <h3>Info:</h3>
+        <p>Eye Color: <%=@userinfo.eye%></p>
+        <p>Own Pets: <%if @userinfo.pet == true%>Yes<%end%><%if @userinfo.pet == false%>No<%end%></p> </p>
+        <p>Tattoo: <%if @userinfo.tattoo == true%>Yes<%end%><%if @userinfo.tattoo == false%>No<%end%></p>
+        <p>Orientation: <%=@userinfo.personality%></p>
+      </div>
     </div>
+    <div class="col-sm-3">
+      <div class="box">
+        <h3>More Info:</h3>
+        <p>Hair Color: <%=@userinfo.hair%></p>
+        <p>Education: <%=@userinfo.education%> </p>
+        <p>Have Kids: <%if @userinfo.kids == true%>Yes<%end%><%if @userinfo.kids == false%>No<%end%></p></p>
+        <p>Birthday: <%=@userinfo.birthday%></p>
+      </div>
     </div>
   </div>
+</div>
+<br>
+<div id="footer" class="container">
+     <div class="img-responsive">
+      <img src="http://wac.450f.edgecastcdn.net/80450F/mix97-3.com/files/2013/04/Happy-Couple-e1366762193936.jpg" class="img-thumbnail" alt="Cinque Terre" width="500" height="336">
+    </div>
+
+     <div class="img-responsive">
+      <img src="http://www.eve.com.mt/wp-content/uploads/2015/07/have-you-found-your-soulmate.jpg" class="img-thumbnail" alt="Cinque Terre" width="500" height="336">
+    </div>
 </div>

@@ -1,15 +1,27 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav>
+<nav class="navbar navbar-default">
+  <h4 id="logo" class="navbar-brand">Welcome To MEET UP</h4>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if session[:user] %>
-          <li><%= link_to "Match Central", match_room_index_path %></li>
-          <li><%= link_to "Log out", users_logout_path, method: :post %></li>
-          <li><a href="/users/<%=session[:user]['id']%>">Profile</a></li>
+          <li><h5><%= link_to "Match Central", match_room_index_path %></h5></li>
+          <li><h5><%= link_to "Log out", users_logout_path, method: :post %></h5></li>
+          <li><h5><a href="/users/<%=session[:user]['id']%>">Profile</a></h5></li>
         <% else %>
-          <li><%= link_to "Log in", "/users/new" %></li>
+          <li><h5><%= link_to "Log in", "/users/new" %></h5></li>
         <% end %>
       </ul>
-    </nav>
-  </div>
-</header>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
