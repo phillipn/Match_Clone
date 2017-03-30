@@ -18,7 +18,7 @@
       <%else%>
         <%= form_for @match_room do |f| %>
           <%= f.hidden_field :receiver_id, value: @user.id %>
-          <%= f.submit 'Get a room' %>
+          <%= f.submit 'Get a room', class: 'btn btn-success' %>
         <% end %>
       <%end%>
     </div>

@@ -38,7 +38,7 @@
       <% @matches_received.each do |match| %>
         <tr>
           <td><img class="thumbnail" src="<%= match.receiver.picture %>" alt="TBD"></td>
-          <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
+          <td><%= link_to match.sender.first_name, users_show_path(match.receiver) %></td>
           <td>
             <% if match.status == 'Pending' %>
               Pending Approval
