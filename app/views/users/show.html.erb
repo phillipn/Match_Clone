@@ -40,11 +40,8 @@
       <div class="box">
         <h3>Bio:</h3>
         <p>Email: <%=@user.email%></p>
-<<<<<<< HEAD
+        <p>Personality Type: <%=@userinfo.personality%> </p>
         <p>Hobbies: <%=@userprof.hobbies%></p>
-=======
-        <p>Personality:<%=@userinfo.personality%> </p>
->>>>>>> 913a0bb8bfafa58b4ea7e41c9582eb58b7241a25
         <p>Sex: <%=@user.sex%></p>
         <p>Orientation: <%=@user.orientation%></p>
       </div>
@@ -64,7 +61,6 @@
         <p>Eye Color: <%=@userinfo.eye%></p>
         <p>Own Pets: <%if @userinfo.pet == true%>Yes<%end%><%if @userinfo.pet == false%>No<%end%></p>
         <p>Tattoo: <%if @userinfo.tattoo == true%>Yes<%end%><%if @userinfo.tattoo == false%>No<%end%></p>
-        <p>Orientation: <%=@userinfo.personality%></p>
       </div>
     </div>
     <div class="col-sm-3">
