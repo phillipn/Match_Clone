@@ -1,41 +1,50 @@
 <div class="container">
-
 <div class="col-md-5">
     <div class="form-area">
-        <form role="form" action="/users/<%=@user.id%>/update" method="POST">
+        <form role="form" action="/users/<%=@user.id%>/update" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
           <input type="hidden" name="_method" value="patch">
-        <br style="clear:both">
-                    <h3 style="margin-bottom: 25px; text-align: center;">Edit Profile</h3>
+          <br style="clear:both">
+          <h3 style="margin-bottom: 25px; text-align: center;">Edit Profile</h3>
           <br>
           <div class="form-group">
-            <input type="text" class="form-control" id="personality" name="personality" placeholder="Personality">
+            <input type="text" class="form-control" id="personality" name="personality" placeholder="Personality" value = "<%= @userinfo.personality %>">
           </div>
           <div class="form-group">
-						<input type="text" class="form-control" id="subject" name="max_age" placeholder="Max Age">
+						<input type="text" class="form-control" id="subject" name="max_age" placeholder="Max Age" value = "<%= @userinfo.max_age %>">
 					</div>
           <div class="form-group">
-						<input type="text" class="form-control" id="subject" name="min_age" placeholder="Min Age">
+						<input type="text" class="form-control" id="subject" name="min_age" placeholder="Min Age" value = "<%= @userinfo.min_age %>">
 					</div>
           <div class="form-group">
-            <input type="text" class="form-control" id="subject" name="job" placeholder="Occupation">
+            <input type="text" class="form-control" id="subject" name="job" placeholder="Occupation" value = "<%= @userprof.job %>">
           </div>
           <div class="form-group">
-						<input type="text" class="form-control" id="subject" name="hobbies" placeholder="Hobbies">
+						<input type="text" class="form-control" id="subject" name="hobbies" placeholder="Hobbies" value = "<%= @userprof.hobbies%>">
 					</div>
           <div class="form-group">
-            <input type="text" class="form-control" id="subject" name="religion" placeholder="Religion">
+            <input type="text" class="form-control" id="subject" name="religion" placeholder="Religion" value = "<%= @userprof.religion %>">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="subject" name="ideal_mate" placeholder="Ideal Mate">
+            <input type="text" class="form-control" id="subject" name="ideal_mate" placeholder="Ideal Mate" value = "<%= @userprof.ideal_mate %>">
           </div>
           <div class="form-group">
-          <textarea class="form-control" type="textarea" name="about_me" placeholder="About Me" maxlength="240" rows="7"></textarea>
+
+          <textarea class="form-control" type="textarea" name="about_me" placeholder="About Me" maxlength="140" rows="7" value = "<%= @userprof.about_me %>"></textarea>
               <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
           </div>
           <br>
-        <input type="submit" name="" value="Submit Form">
-        </form>
+          <input type="file" name="picture">
+        <input id='picture' type="submit" name="" value="Submit Form" accept="image/*">
+      </form>
     </div>
 </div>
 </div>
+<script type="text/javascript">
+  $('#picture').bind('change', function(){
+    size = this.files[0].size/1024/1024;
+    if(size > 5){
+      alert('maximum file size exceeded')
+    }
+  })
+</script>

@@ -2,131 +2,360 @@
 <h2>Personal Survey</h2>
 <form method="post" action="/survey/personal">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="">Birthday</label>
-  <input type="date" name="birthday">
-  <br>
-  <label for="">Hair Color</label>
-  <select name="hair">
-    <option disabled selected value> -- select one -- </option>
-    <option value="Blonde">Blonde</option>
-    <option value="Brunette">Brunette</option>
-    <option value="Grey">Grey</option>
-    <option value="Red">Red</option>
-    <option value="Other">Other</option>
-  </select>
-  <br>
-  <label for="">Eye Color</label>
-  <select name="eye">
-    <option disabled selected value> -- select one -- </option>
-    <option value="Blue">Blue</option>
-    <option value="Brown">Brown</option>
-    <option value="Gray">Gray</option>
-    <option value="Green">Green</option>
-    <option value="Hazel">Hazel</option>
-    <option value="Other">Other</option>
-  </select>
-  <br>
-  <label for="">Highest Level of Education</label>
-  <select name="education">
-    <option disabled selected value> -- select one -- </option>
-    <option value="High School">High School</option>
-    <option value="Undergraduate Degree">Undergraduate Degree</option>
-    <option value="Masters Degree">Masters Degree</option>
-    <option value="Doctorate">Doctorate</option>
-  </select>
-  <br>
-  <label for="">Minimum Age Range of Future Love</label>
-  <input type="number" name="min_age">
-  <br> 
-  <label for="">Maximum Age Range of Future Love</label>
-  <input type="number" name="max_age">
-  <br>
-  <label for="">Do You Have Kids</label>
-  <input type="radio" name="kids" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="kids" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Would You Date Someone With Kids</label>
-  <input type="radio" name="date_kids" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="date_kids" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="kids">Do You Want Kids</label>
-  <input type="radio" name="want_kids" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="want_kids" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Political Views</label>
-  <input type="radio" name="politics" value="Conservative">
-  <label for="">Conservative</label>
-  <input type="radio" name="politics" value="Moderate">
-  <label for="">Moderate</label>
-  <input type="radio" name="politics" value="Liberal">
-  <label for="">Liberal</label>
-  <br>
-  <label for="">Would You Date Someone with Alternative Political Views as You?</label>
-  <input type="radio" name="date_politics" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="date_politics" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Do You Smoke/label>
-  <input type="radio" name="smoke" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="smoke" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Would You Date Someone Who Smoked</label>
-  <input type="radio" name="date_smoke" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="date_smoke" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Do You Have A Tattoo</label>
-  <input type="radio" name="tattoo" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="tattoo" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Would You Date Someone Who had a Tattoo</label>
-  <input type="radio" name="date_tattoo" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="date_tattoo" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Your Religion</label>
-  <select name="religion">
-    <option disabled selected value> -- select one -- </option>
-    <option value="Christianit">Christianity</option>
-    <option value="Islam">Islam</option>
-    <option value="Judaism">Judaism</option>
-    <option value="Buddhism">Buddhism</option>
-    <option value="Hinduism">Hinduism</option>
-    <option value="Atheistism">Atheistism</option>
-    <option value="Mormonism">Mormonism</option>
-    <option value="Other">Other</option>
-  </select>
-  <br>
-  <label for="">Would You Date Someone Who Did Not Practice Same Religion as You?</label>
-  <input type="radio" name="date_religion" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="date_religion" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Do you Have A Pet?</label>
-  <input type="radio" name="pet" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="pet" value="no">
-  <label for="">No</label>
-  <br>
-  <label for="">Would You Date Someone Who had a Pet?</label>
-  <input type="radio" name="date_pet" value="yes">
-  <label for="">Yes</label>
-  <input type="radio" name="date_pet" value="no">
-  <label for="">No</label>
-  <br>
-  <input type="submit" value="Submit Survey">
+  <div class="form-group row">
+    <label for="example-date-input" class="col-2 col-form-label">Birthday</label>
+    <div class="col-10">
+      <input class="form-control" type="date" id="example-date-input" name="birthday">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-number-input" class="col-2 col-form-label">Minimum Age of Future Love</label>
+    <div class="col-10">
+      <input class="form-control" type="number" value="18" id="example-number-input" name="min_age" min="18">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-number-input" class="col-2 col-form-label">Maximum Age of Future Love</label>
+    <div class="col-10">
+      <input class="form-control" type="number" value="100" id="example-number-input" name="max_age">
+    </div>
+  </div>
+  <fieldset class="form-group">
+    <legend>Eye Color</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="hair" value="Blonde" >
+        Blonde
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="hair" value="Brunette">
+        Brunette
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="hair" value="Grey">
+        Grey
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="hair" value="Red">
+        Red
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="hair" value="Other">
+        Other
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Eye Color</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="eye" value="Blue">
+        Blue
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="eye" value="Brown">
+        Brown
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="eye" value="Gray">
+        Gray
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="eye" value="Green">
+        Green
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="eye" value="Hazel">
+        Hazel
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="eye" value="Other">
+        Other
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Highest Level of Education</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="education" value="High School">
+        High School
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="education" value="Undergraduate Degree">
+        Undergraduate Degree
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="education" value="Masters Degree">
+        Masters Degree
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="education" value="Doctorate">
+        Doctorate
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Do You Have Kids?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="kids" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="kids" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Would You Date Someone With Kids</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_kids" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_kids" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Do You Want Kids?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="want_kids" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="want_kids" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Do You Smoke?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="smoke" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="smoke" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Would You Date Someone Who Smoked?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_smoke" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_smoke" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Do You Have a Tattoo?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="tattoo" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="tattoo" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Would Ypu Date Someone With a Tattoo?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_tattoo" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_tattoo" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Do You Have a Pet?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="pet" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="pet" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Would You Date Someone With a Pet?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_pet" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_pet" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Political Views</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="politics" value="Conservative">
+        Conservative
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="politics" value="Moderate">
+        Moderate
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="politics" value="Liberal">
+        Liberal
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Would You Date Someone with Alternative Political Views as You?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_politics" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_politics" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>What is Your Religion?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Christianity">
+        Christianity
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Islam">
+        Islam
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Judaism">
+        Judaism
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Buddhism">
+        Buddhism
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Hinduism">
+        Hinduism
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Atheistism">
+        Atheistism
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Mormonism">
+        Mormonism
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="religion" value="Other">
+        Other
+      </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <legend>Would You Date Someone Who Did Not Practice Same Religion as You?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_religion" value="yes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="date_religion" value="no">
+        No
+      </label>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn btn-success btn-block btn-lg">Submit Survey</button>
 </form>

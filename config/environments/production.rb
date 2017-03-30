@@ -9,7 +9,8 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-
+  config.web_socket_server_url = "wss://dating-site-project.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://dating-site-project.herokuapp.com', 'http://dating-site-project.herokuapp.com']
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

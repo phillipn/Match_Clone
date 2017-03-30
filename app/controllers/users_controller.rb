@@ -53,15 +53,15 @@ class UsersController < ApplicationController
     elsif @current_user.personality == "ENTJ"
       relationships = entj
     end
-    @possible_matches = UserInfo.where(personality: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP", "ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP","ESFJ", "ESFP", "ENFP", "INFP"])
+    @possible_matches = UserInfo.where(personality: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP", "ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP","ESFJ", "ESFP", "ENFP", "INFP"]).where.not(user_id: session[:user]['id'])
     @ranking = {}
     @possible_matches.each do |match|
       if relationships[:best].include?(match.personality)
-        @ranking[match.user_id] = 60
+        @ranking[match.user_id] = 500/(relationships[:best].length)
       elsif relationships[:ok].include?(match.personality)
-        @ranking[match.user_id] = 30
+        @ranking[match.user_id] = 250/(relationships[:ok].length)
       else
-        @ranking[match.user_id] = 10
+        @ranking[match.user_id] = 100/(relationships[:worst].length)
       end
     end
     points = 5
@@ -86,7 +86,6 @@ class UsersController < ApplicationController
          @ranking[match.user_id] += points
       end
     end
-    puts "RANKINGS ========== #{@ranking}"
   end
 
   def post_personality_survey
@@ -203,7 +202,6 @@ class UsersController < ApplicationController
     else
       params[:date_pet] = false
     end
-    puts "updated params #{params}"
     info = UserInfo.update(id, :max_age => params[:min_age], :min_age => params[:max_age], :hair => params[:hair], :eye => params[:eye], :education => params[:education], :kids => params[:kids], :date_kids => params[:date_kids], :want_kids => params[:want_kids], :politics => params[:politics], :date_politics => params[:date_politics], :smoke => params[:smoke], :date_smoke => params[:date_smoke], :tattoo => params[:tattoo], :date_tattoo => params[:date_tattoo], :religion => params[:religion], :date_religion => params[:date_religion], :pet => params[:pet], :date_pet => params[:date_pet], :birthday => params[:birthday])
     if info.errors.full_messages[0]
      flash[:errors] = info.errors.full_messages
@@ -217,7 +215,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts params
     if params[:password] == params[:password_confirm]
       user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], sex: params[:sex], orientation: params[:orientation])
       if user.errors.full_messages[0]
@@ -271,19 +268,29 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @userinfo = UserInfo.find_by(user_id: params[:id])
     @userprof = Profile.find_by(user_id: params[:id])
+    puts @userprof.inspect
   end
 
   def edit
     @user = User.find(params[:id])
-
+    @userinfo = UserInfo.find_by(user_id: params[:id])
+    @userprof = Profile.find_by(user_id: params[:id])
+    puts @user.inspect
+    puts @userinfo.inspect
+    puts @userprof.inspect
   end
 
   def update
+      user = User.find_by(id: params[:id])
+      user.picture = params[:picture]
+      user.save
+
       userinfo = UserInfo.find_by(user_id: params[:id])
       userinfo.personality = params[:personality]
       userinfo.max_age = params[:max_age]
       userinfo.min_age = params[:min_age]
       userinfo.save
+
       userprof = Profile.find_by(user_id: params[:id])
       userprof.about_me = params[:about_me]
       userprof.ideal_mate = params[:ideal_mate]
@@ -291,6 +298,7 @@ class UsersController < ApplicationController
       userprof.religion = params[:religion]
       userprof.hobbies = params[:hobbies]
       userprof.save
+
       redirect_to users_show_path
   end
 

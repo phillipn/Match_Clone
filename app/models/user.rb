@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_one :location
-
+  mount_uploader :picture, PictureUploader
   has_one :active_match, -> { includes :receiver }, class_name: 'MatchRoom', foreign_key: 'sender_id'
   has_one :active_love, class_name: 'User', through: 'active_match', source: 'receiver'
 
@@ -15,4 +15,13 @@ class User < ApplicationRecord
   validates :orientation, presence:true, inclusion: { in: %w(Bi-Sexual Straight Gay),
     message: "%{value} is not a valid orientation" }
   validates :email, presence:true, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
+  validate :picture_size
+
+  private
+
+  def picture_size
+    if picture.size > 5.megabytes
+      errors.add(:picture, "should be less than 5 MB")
+    end
+  end
 end
