@@ -4,7 +4,7 @@
   </div>
 <div class="col-md-5">
     <div class="form-area">
-        <form role="form" action="/users/<%=@user.id%>/update/profile" method="POST">
+        <form role="form" action="/users/<%=@user.id%>/update/profile" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
           <input type="hidden" name="_method" value="patch">
           <br style="clear:both">
