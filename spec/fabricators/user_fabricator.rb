@@ -2,9 +2,9 @@ Fabricator(:user) do
   first_name {Faker::Name.first_name}
   last_name {Faker::Name.last_name}
   password {'admin'}
-  sex
+  sex {Faker::Demographic.sex}
   orientation
-  email {Faker::Internet.email}
+  email {Faker::Internet.unique.email}
   user_info {[Fabricate()]}
   profile {[Fabricate()]}
   location {[Fabricate()]}
