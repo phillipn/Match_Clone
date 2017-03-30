@@ -15,6 +15,7 @@ body{
   background-color:#600080;
   color: #B9E2F8;
   font-family: 'Courgette', cursive;
+  text-align: center;
 }
 
 .abtmebox{
@@ -55,15 +56,11 @@ body{
   margin-left: 0px;
 }
 
-.form-area
-{
+.form-area{
   background-color: #FAFAFA;
 	padding: 10px 40px 60px;
 	margin: 10px 0px 60px;
 	border: 1px solid GREY;
-
-
-
 	}
 
   #container-fluid{
@@ -95,7 +92,6 @@ body{
   }
 
   #newRow{
-
     background-image: url('http://i2.cdn.cnn.com/cnnnext/dam/assets/160108074615-online-dating-illustration-exlarge-169.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -157,7 +153,6 @@ body{
   background-color: #600080;
   margin-left: -15px;
   border-radius: 10px;
-
 }
 
 .img-responsive{
