@@ -1,21 +1,25 @@
 <div class="container">
+  <div class="header">
+    <h1>Edit Your Profile</h1>
+  </div>
 <div class="col-md-5">
     <div class="form-area">
-        <form role="form" action="/users/<%=@user.id%>/update" method="POST" enctype="multipart/form-data">
+        <form role="form" action="/users/<%=@user.id%>/update/profile" method="POST">
           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
           <input type="hidden" name="_method" value="patch">
           <br style="clear:both">
-          <h3 style="margin-bottom: 25px; text-align: center;">Edit Profile</h3>
-          <br>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <input type="text" class="form-control" id="personality" name="personality" placeholder="Personality" value = "<%= @userinfo.personality %>">
-          </div>
+          </div> -->
           <div class="form-group">
 						<input type="text" class="form-control" id="subject" name="max_age" placeholder="Max Age" value = "<%= @userinfo.max_age %>">
 					</div>
           <div class="form-group">
 						<input type="text" class="form-control" id="subject" name="min_age" placeholder="Min Age" value = "<%= @userinfo.min_age %>">
 					</div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="subject" name="education" placeholder="Education" value = "<%= @userinfo.education %>">
+          </div>
           <div class="form-group">
             <input type="text" class="form-control" id="subject" name="job" placeholder="Occupation" value = "<%= @userprof.job %>">
           </div>
@@ -29,13 +33,38 @@
             <input type="text" class="form-control" id="subject" name="ideal_mate" placeholder="Ideal Mate" value = "<%= @userprof.ideal_mate %>">
           </div>
           <div class="form-group">
+            <textarea class="form-control" type="textarea" name="about_me" placeholder="About Me" maxlength="200" rows="7" value = "<%= @userprof.about_me %>"></textarea>
+            <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+          </div>
+          <input type="file" name="picture">
+          <br>
+          <input id='picture' type="submit" name="" value="Submit Form" accept="image/*">
+         </form>
+        </div>
+      </div>
+      <div class="col-md-5">
+       <div class="form-area">
+         <form role="form" action="/users/<%=@user.id%>/update/account" method="POST" enctype="multipart/form-data">
+           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+           <input type="hidden" name="_method" value="patch">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<%=@user.email%>">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+          </div>
 
-          <textarea class="form-control" type="textarea" name="about_me" placeholder="About Me" maxlength="140" rows="7" value = "<%= @userprof.about_me %>"></textarea>
-              <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" name="password_confirm">
+          </div>
+          <div class="ErrorMessage">
+            <p><%=flash[:UpdateErrors]%></p>
           </div>
           <br>
-          <input type="file" name="picture">
-        <input id='picture' type="submit" name="" value="Submit Form" accept="image/*">
+        <input type="submit" name="" value="Edit Profile">
       </form>
     </div>
 </div>

@@ -1,8 +1,8 @@
-
+<div class="header1">
+  <h1 class="elegantshd"> MEET UP</h1>
+</div>
 <div id="newRow" class="row">
-  <div id="loginBox" class="col-xs-6 col-sm-6 col-lg-6">
-
-
+  <div id="loginBox" class="col-xs-4 col-sm-4 col-lg-4">
     <h3>Login</h3>
     <form action="/login" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -15,12 +15,12 @@
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
+      <hr>
     </form>
   </div>
 
-  <div id="registerBox" class="col-xs-6 col-sm-6 col-lg-6">
+  <div id="registerBox" class="col-xs-4 col-sm-4 col-lg-4">
     <h3>Register And Meet Friendly Singles!</h3>
-
     <form action="/users" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <div class="form-group">
@@ -86,9 +86,11 @@
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" name="password_confirm">
       </div>
       <button type="submit" class="btn btn-primary">Register</button>
+      <hr>
     </form>
   </div>
 </div>
+<br>
 <div class="login_reg_Quote">
   <h1>You Are One Click Away From Love!</h1>
 </div>
@@ -97,6 +99,5 @@
 <div id="homejumbo" class="jumbotron jumbotron-fluid">
   <div  class="container">
     <h1 class="display-3">Let Us Help You Find Your Soultmate!</h1>
-
   </div>
 </div>

@@ -2,16 +2,17 @@
 <div class="container-fluid well span6">
   <div class="row-fluid">
     <div class="span2" >
+    dsfgs
       <img src="<%= @user.picture %>" class="img-circle">
     </div>
     <div class="card-block">
       <h4><%=@user.first_name%> <%=@user.last_name%></h4>
-    </div>
-    <ul class="list-group list-group-flush">
+    <ul id="cardblock" class="list-group list-group-flush">
       <li class="list-group-item"><h5>Email: <%=@user.email%></h5></li>
       <li class="list-group-item"><h5>Occupation: <%=@userprof.job%></h5></li>
       <li class="list-group-item"><h5>Sex: <%=@user.sex%></h5></li>
     </ul>
+  </div>
     <div class="card-block">
       <%if session[:user]['id'] == @user.id%>
       <a href="/users/<%=@user.id%>/edit/profile">
@@ -21,20 +22,22 @@
     </div>
   </div>
 </div>
-<div class="jumbotron text-center">
-  <div class="abtmebox">
-    <h1>About Me</h1>
-    <p><%=@userprof.about_me%></p>
+<br>
+<div id="abtme" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">About Me</h1>
+    <hr>
+    <h2><%=@userprof.about_me%></h2>
   </div>
 </div>
-
+<br>
 <div id="profContainer" class="container">
   <div class="row">
     <div class="col-sm-3">
       <div class="box">
         <h3>Bio:</h3>
         <p>Email: <%=@user.email%></p>
-        <p>Personality: <%=@userinfo.personality%> </p>
+        <p>Hobbies: <%=@userprof.hobbies%></p>
         <p>Sex: <%=@user.sex%></p>
         <p>Orientation: <%=@user.orientation%></p>
       </div>
@@ -42,7 +45,6 @@
     <div class="col-sm-3">
       <div class="box">
         <h3>Interests:</h3>
-        <p>Hobbies: <%=@userprof.hobbies%></p>
         <p>Max Age: <%=@userinfo.max_age%></p>
         <p>Min Age: <%=@userinfo.min_age%></p>
         <p>Religion: <%=@userprof.religion%></p>
@@ -53,7 +55,7 @@
       <div class="box">
         <h3>Info:</h3>
         <p>Eye Color: <%=@userinfo.eye%></p>
-        <p>Own Pets: <%if @userinfo.pet == true%>Yes<%end%><%if @userinfo.pet == false%>No<%end%></p> </p>
+        <p>Own Pets: <%if @userinfo.pet == true%>Yes<%end%><%if @userinfo.pet == false%>No<%end%></p>
         <p>Tattoo: <%if @userinfo.tattoo == true%>Yes<%end%><%if @userinfo.tattoo == false%>No<%end%></p>
         <p>Orientation: <%=@userinfo.personality%></p>
       </div>
@@ -63,7 +65,7 @@
         <h3>More Info:</h3>
         <p>Hair Color: <%=@userinfo.hair%></p>
         <p>Education: <%=@userinfo.education%> </p>
-        <p>Have Kids: <%if @userinfo.kids == true%>Yes<%end%><%if @userinfo.kids == false%>No<%end%></p></p>
+        <p>Have Kids: <%if @userinfo.kids == true%>Yes<%end%><%if @userinfo.kids == false%>No<%end%></p>
         <p>Birthday: <%=@userinfo.birthday%></p>
       </div>
     </div>
@@ -76,6 +78,6 @@
     </div>
 
      <div class="img-responsive">
-      <img src="http://www.eve.com.mt/wp-content/uploads/2015/07/have-you-found-your-soulmate.jpg" class="img-thumbnail" alt="Cinque Terre" width="500" height="336">
+      <img src="http://www.eve.com.mt/wp-content/uploads/2015/07/have-you-found-your-soulmate.jpg" class="img-thumbnail" alt="Cinque Terre" width="600" height="336">
     </div>
 </div>
