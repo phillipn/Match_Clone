@@ -2,9 +2,9 @@
   <div class="header">
     <h1>Edit Your Profile</h1>
   </div>
-<div class="col-md-5">
+<div class="col-md-6">
     <div class="form-area">
-        <form role="form" action="/users/<%=@user.id%>/update/profile" method="POST">
+        <form role="form" action="/users/<%=@user.id%>/update/profile" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
           <input type="hidden" name="_method" value="patch">
           <br style="clear:both">
@@ -12,27 +12,35 @@
             <input type="text" class="form-control" id="personality" name="personality" placeholder="Personality" value = "<%= @userinfo.personality %>">
           </div> -->
           <div class="form-group">
+            <label>Max Age:</label>
 						<input type="text" class="form-control" id="subject" name="max_age" placeholder="Max Age" value = "<%= @userinfo.max_age %>">
 					</div>
           <div class="form-group">
+            <label>Min Age:</label>
 						<input type="text" class="form-control" id="subject" name="min_age" placeholder="Min Age" value = "<%= @userinfo.min_age %>">
 					</div>
           <div class="form-group">
+            <label>Education:</label>
             <input type="text" class="form-control" id="subject" name="education" placeholder="Education" value = "<%= @userinfo.education %>">
           </div>
           <div class="form-group">
+            <label>Occupation:</label>
             <input type="text" class="form-control" id="subject" name="job" placeholder="Occupation" value = "<%= @userprof.job %>">
           </div>
           <div class="form-group">
+            <label>Hobbies</label>
 						<input type="text" class="form-control" id="subject" name="hobbies" placeholder="Hobbies" value = "<%= @userprof.hobbies%>">
 					</div>
           <div class="form-group">
+            <label>Religion</label>
             <input type="text" class="form-control" id="subject" name="religion" placeholder="Religion" value = "<%= @userprof.religion %>">
           </div>
           <div class="form-group">
+            <label>Ideal Mate</label>
             <input type="text" class="form-control" id="subject" name="ideal_mate" placeholder="Ideal Mate" value = "<%= @userprof.ideal_mate %>">
           </div>
           <div class="form-group">
+            <label>About Me</label>
             <textarea class="form-control" type="textarea" name="about_me" placeholder="About Me" maxlength="200" rows="7" value = ""><%= @userprof.about_me %></textarea>
             <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
           </div>
@@ -42,7 +50,7 @@
          </form>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
        <div class="form-area">
          <form role="form" action="/users/<%=@user.id%>/update/account" method="POST" enctype="multipart/form-data">
            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
