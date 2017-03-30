@@ -4,6 +4,7 @@
 ## Authors
 #### Patrick Falconer
 #### Nick Phillips
+#### Juan Martinez
 
 ## Dependencies
 
@@ -11,10 +12,9 @@
 
 ## Future Version Updates
 
-## To-Do
-  * show users page
-  * users index
-  * matching algorithm
+## To-Do / Bugs
+  * Filterrific on index page
   * search matches by nearby
-  * submit personal survey
-  * style nav bar
+  * bug with update on profile about_me
+  * force user to complete surveys
+  * seed.rb file
