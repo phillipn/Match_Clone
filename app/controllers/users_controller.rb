@@ -287,7 +287,6 @@ class UsersController < ApplicationController
       user.save
 
       userinfo = UserInfo.find_by(user_id: params[:id])
-      #userinfo.personality = params[:personality]
       userinfo.max_age = params[:max_age]
       userinfo.min_age = params[:min_age]
       userinfo.education = params[:education]
