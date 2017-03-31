@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_if_logged_in, except: [:new, :create, :login]
+  before_action :completed_survey, except: [:new, :create, :login, :post_personality_survey, :personality_survey, :personal_survey, :post_personal_survey, :logout]
 
   def index
     @match_room = MatchRoom.new
