@@ -19,7 +19,7 @@
           <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
           <td>
             <% if match.status == 'Pending' %>
-              You Request is Pending
+              Your Request is Pending
             <% else %>
               <%= match.status %>
             <% end %>
