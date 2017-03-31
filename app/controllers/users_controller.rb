@@ -357,7 +357,8 @@ class UsersController < ApplicationController
       flash[:errors] = user.errors.full_messages
       redirect_to users_edit_path
     else
-      redirect_to '/'
+      user.destroy
+      redirect_to '/users/new'
     end
   end
 
