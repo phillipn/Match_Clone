@@ -96,7 +96,7 @@ class UsersController < ApplicationController
     end
     before = @ranking.length
     @possible_matches.each do |match|
-      if @current_user.user.orientation == 'Straight' && match.user.orientation =='Straight' && @current_user.user.sex == match.user.sex
+      if @current_user.user.orientation == 'Straight' && @current_user.user.sex == match.user.sex
         @ranking.delete(match.user_id)
       elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Gay'
         @ranking.delete(match.user_id)
@@ -104,13 +104,8 @@ class UsersController < ApplicationController
         @ranking.delete(match.user_id)
       elsif @current_user.user.orientation == 'Gay' && match.user.orientation == 'Bi-Sexual' || match.user.orientation == 'Gay' && @current_user.user.sex != match.user.sex
         @ranking.delete(match.user_id)
-      # elsif @current_user.orientation == 'Bi-Sexual'
-
-      # elsif
-
-      # elsif
-
-      # elsif
+      elsif @current_user.user.orientation == 'Bi-Sexual' && match.user.orientation == 'Gay' && @current_user.user.sex != match.user.sex || match.user.orientation == 'Straight' && @current_user.user.sex == match.user.sex
+        @ranking.delete(match.user_id)
       end
     end
     puts "DELETED =========== #{before-@ranking.length}"
