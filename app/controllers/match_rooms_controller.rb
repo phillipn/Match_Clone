@@ -21,9 +21,9 @@ class MatchRoomsController < ApplicationController
     matches = matched?(session[:user]['id'], match_room_params[:receiver_id])
     redirect_to request.referer || root_path and return if matches
 
-    if params[:receiver_id] == params[:sender_id]
+    if match_room_params[:receiver_id] == match_room_params[:sender_id]
       flash[:errors] = ["Ain't no lovin yourself homie"]
-      redirect_to request.referer || root_path
+      redirect_to request.referer || root_path and return
     end
 
     @match_room = MatchRoom.new(match_room_params)
@@ -35,7 +35,7 @@ class MatchRoomsController < ApplicationController
     else
       flash[:errors] = @match_room.errors.full_messages
     end
-
+    puts @match_room.sender
     MatchMailer.match_email(@match_room.receiver, @match_room.sender).deliver
     redirect_to match_room_index_path
   end
