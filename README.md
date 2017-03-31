@@ -36,14 +36,5 @@
 
 ## Future Version Updates
 
-## To-Do / Bugs
-  * Filterrific on index page
-  * gender and sexual orientation
-
-
-
-  * have geokit take in ip address and geocode lat long and address
-  * add Drop down for religion and education on profile edit page
   * edit file upload buttom on edit page
-  * bug with update on profile about_me
 

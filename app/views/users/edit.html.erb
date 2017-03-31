@@ -29,6 +29,31 @@
             <input type="text" class="form-control" id="subject" name="education" placeholder="Education" value = "<%= @userinfo.education %>">
           </div>
           <div class="form-group">
+            <label>Education:</label>
+            <select class="form-control" name="education">
+              <% if @userinfo.education == 'High School' %>
+                <option selected value="High School">High School</option>
+              <% else %>
+                <option value="High School">High School</option>
+              <% end %>
+              <% if @userinfo.education == 'Undergraduate Degree' %>
+                <option selected value="Undergraduate Degree">Undergraduate Degree</option>
+              <% else %>
+                <option value="Undergraduate Degree">Undergraduate Degree</option>
+              <% end %>
+              <% if @userinfo.education == 'Masters Degree' %>
+                <option selected value="Masters Degree">Masters Degree</option>
+              <% else %>
+                <option value="Masters Degree">Masters Degree</option>
+              <% end %>
+              <% if @userinfo.education == 'Doctorate' %>
+                <option selected value="Doctorate">Doctorate</option>
+              <% else %>
+                <option value="Doctorate">Doctorate</option>
+              <% end %>
+            </select>
+          </div>
+          <div class="form-group">
             <label>Occupation:</label>
             <input type="text" class="form-control" id="subject" name="job" placeholder="Occupation" value = "<%= @userprof.job %>">
           </div>
@@ -38,7 +63,48 @@
 					</div>
           <div class="form-group">
             <label>Religion</label>
-            <input type="text" class="form-control" id="subject" name="religion" placeholder="Religion" value = "<%= @userprof.religion %>">
+            <select name="religion" class="form-control">
+              <% if @userprof.religion == 'Christianity' %>
+                <option selected value="Christianity">Christianity</option>
+              <% else %>
+                <option value="Christianity">Christianity</option>
+              <% end %>
+              <% if @userprof.religion == 'Islam' %>
+                <option selected value="Islam">Islam</option>
+              <% else %>
+                <option value="Islam">Islam</option>
+              <% end %>
+              <% if @userprof.religion == 'Judaism' %>
+                <option selected value="Judaism">Judaism</option>
+              <% else %>
+                <option value="Judaism">Judaism</option>
+              <% end %>
+              <% if @userprof.religion == 'Buddhism' %>
+                <option selected value="Buddhism">Buddhism</option>
+              <% else %>
+                <option value="Buddhism">Buddhism</option>
+              <% end %>
+              <% if @userprof.religion == 'Hinduism' %>
+                <option selected value="Hinduism">Hinduism</option>
+              <% else %>
+                <option value="Hinduism">Hinduism</option>
+              <% end %>
+              <% if @userprof.religion == 'Atheistism' %>
+                <option selected value="Atheistism">Atheistism</option>
+              <% else %>
+                <option value="Atheistism">Atheistism</option>
+              <% end %>
+              <% if @userprof.religion == 'Mormonism' %>
+                <option selected value="Mormonism">Mormonism</option>
+              <% else %>
+                <option value="Mormonism">Mormonism</option>
+              <% end %>
+              <% if @userprof.religion == 'Other' %>
+                <option selected value="Other">Other</option>
+              <% else %>
+                <option value="Other">Other</option>
+              <% end %>
+            </select>
           </div>
           <div class="form-group">
             <label>Ideal Mate</label>

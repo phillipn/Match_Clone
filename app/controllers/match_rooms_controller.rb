@@ -5,7 +5,7 @@ class MatchRoomsController < ApplicationController
   def index
     @matches_sent = MatchRoom.where("sender_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
     @matches_received = MatchRoom.where("receiver_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
-    @top_three = User.limit(3)
+    @top_three = User.order("RANDOM()").limit(3).where.not(id: session[:user]['id'])
   end
 
   def show
@@ -21,6 +21,11 @@ class MatchRoomsController < ApplicationController
     matches = matched?(session[:user]['id'], match_room_params[:receiver_id])
     redirect_to request.referer || root_path and return if matches
 
+    if params[:receiver_id] == params[:sender_id]
+      flash[:errors] = ["Ain't no lovin yourself homie"]
+      redirect_to request.referer || root_path
+    end
+
     @match_room = MatchRoom.new(match_room_params)
     @match_room.status = 'Pending'
     @match_room.sender_id = session[:user]['id']
@@ -31,7 +36,7 @@ class MatchRoomsController < ApplicationController
       flash[:errors] = @match_room.errors.full_messages
     end
 
-    MatchMailer.match_email(@match_room.receiver).deliver
+    MatchMailer.match_email(@match_room.receiver, @match_room.sender).deliver
     redirect_to match_room_index_path
   end
 

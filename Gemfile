@@ -42,6 +42,7 @@ gem 'fog'
 gem 'fabrication'
 gem 'faker'
 gem 'filterrific'
+gem "adroit-age"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'local_time'

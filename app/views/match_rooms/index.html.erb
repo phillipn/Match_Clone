@@ -19,7 +19,7 @@
           <td><%= link_to match.receiver.first_name, users_show_path(match.receiver) %></td>
           <td>
             <% if match.status == 'Pending' %>
-              Request Pending
+              You Request is Pending
             <% else %>
               <%= match.status %>
             <% end %>
@@ -41,7 +41,7 @@
           <td><%= link_to match.sender.first_name, users_show_path(match.receiver) %></td>
           <td>
             <% if match.status == 'Pending' %>
-              Pending Approval
+              Pending Your Approval
             <% else %>
               <%= match.status %>
             <% end %>
@@ -75,7 +75,7 @@
 
 <h1 class='third'><span class="glyphicon glyphicon-user"></span> Recommended For You</h1>
 <% @top_three.each do |user| %>
-  <div class="col-xs-12 col-md-4">
+  <div class="top col-xs-12 col-md-4">
     <img class='img-circle' src="<%= user.picture %>" alt="user_picture">
     <br>
     <%= link_to "See Profile", users_show_path(user) %>
