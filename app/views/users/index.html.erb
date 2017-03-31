@@ -1,25 +1,9 @@
 <div class="row">
-  <div class="col-lg-3 col-sm-3 col-md-3">
-
-  </div>
-  <div class="col-lg-6 col-sm-6 col-md-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search Matches...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div>
-  </div>
-  <div class="col-lg-3 col-sm-3 col-md-3">
-
-  </div>
-</div>
-<div class="row">
   <ul class="list-group">
     <% @ranking.sort_by {|_key, value| value}.reverse.each do |user| %>
         <% @possible_matches.each do |match| %>
           <% if match.user_id == user[0] %>
-            <li class="list-group-item" style="height: 2%;"><%= match.user.first_name %> <%= match.user.last_name %> - (Ranking: <%= user[1]%>)<%= form_for @match_room do |f| %><%= f.hidden_field :receiver_id, value: user[0] %><%= f.submit 'Get a room' %><% end %></li>
+            <li class="list-group-item" style="height: 2%;"><a href="/users/<%= match.user_id %>"><%= match.user.first_name %> <%= match.user.last_name %></a> - (Ranking: <%= user[1]%>)<%= form_for @match_room do |f| %><%= f.hidden_field :receiver_id, value: user[0] %><%= f.submit 'Get a room' %><% end %></li>
       <% end %>
     <% end %>
   <% end %>
