@@ -161,7 +161,7 @@ footer{
 
 .editBTN{
   color: white;
-  background-color: #600080
+  background-color: #600080;
 }
 
 #picture{
@@ -187,4 +187,20 @@ footer{
   padding: 7px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+.PersonalSurvey legend{
+  color:#1AD1FF;
+}
+
+.PersonalSurvey label{
+  color: #1AD1FF;
+}
+
+.Bday_min_max label{
+  color: #1AD1FF;
+}
+
+.PersonalSurvey h2{
+  font-family: 'Courgette';
 }
