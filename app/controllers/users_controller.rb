@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
     @match_room = MatchRoom.new
     @current_user = UserInfo.where(user_id: session[:user]['id']).first
+    puts @current_user.inspect
     istj = {best: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP" ], ok: ["ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP"], worst: ["ESFJ", "ESFP", "ENFP", "INFP"], population: 14}
     istp = {best: ["ESTJ", "ISTJ", "ENTJ", "ESTP"], ok: ["ESFJ", "ISFP", "INTJ", "ISFJ"], worst: ["ISTP", "ESFP", "ENTP", "INTP", "ENFJ", "INFJ", "ENFP", 'INFP'], population: 6}
     estp = {best: ["ISTJ", "ESTP", "ISTP", "ESFP"], ok: ["ESTJ", "ISFP", "ENTJ", "ENTP", "INTP", "ISFJ"],worst: ["ESFJ", "INTJ", "ENFJ", "INFJ", "ENFP", "INFP"],population: 6}
@@ -96,7 +97,7 @@ class UsersController < ApplicationController
     end
     before = @ranking.length
     @possible_matches.each do |match|
-      if @current_user.user.orientation == 'Straight' && match.user.orientation =='Straight' && @current_user.user.sex == match.user.sex
+      if @current_user.user.orientation == 'Straight' && @current_user.user.sex == match.user.sex
         @ranking.delete(match.user_id)
       elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Gay'
         @ranking.delete(match.user_id)
@@ -104,13 +105,8 @@ class UsersController < ApplicationController
         @ranking.delete(match.user_id)
       elsif @current_user.user.orientation == 'Gay' && match.user.orientation == 'Bi-Sexual' || match.user.orientation == 'Gay' && @current_user.user.sex != match.user.sex
         @ranking.delete(match.user_id)
-      # elsif @current_user.orientation == 'Bi-Sexual'
-
-      # elsif
-
-      # elsif
-
-      # elsif
+      elsif @current_user.user.orientation == 'Bi-Sexual' && match.user.orientation == 'Gay' && @current_user.user.sex != match.user.sex || match.user.orientation == 'Straight' && @current_user.user.sex == match.user.sex
+        @ranking.delete(match.user_id)
       end
     end
     puts "DELETED =========== #{before-@ranking.length}"
@@ -314,8 +310,10 @@ class UsersController < ApplicationController
 
   def update
       user = User.find_by(id: params[:id])
+      puts user
       user.picture = params[:picture]
       user.save
+      puts user.errors.full_messages
 
       userinfo = UserInfo.find_by(user_id: params[:id])
       userinfo.max_age = params[:max_age]
@@ -364,6 +362,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:personality,:max_age,:min_age,:job,:hobbies,:religion,:ideal_mate,:about_me,:password,:password_confirm)
+    params.require(:user).permit(:personality,:picture,:max_age,:min_age,:job,:hobbies,:religion,:ideal_mate,:about_me,:password,:password_confirm)
   end
 end
