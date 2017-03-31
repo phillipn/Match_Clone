@@ -68,33 +68,31 @@ class UsersController < ApplicationController
       end
     end
     @possible_matches.each do |match|
-      puts Date.today.year
-      puts match.birthday.year
-      match_age = Date.today.year - match.birthday.year
-      match_age -= 1 if Date.today < match.birthday + match_age.years
+      puts "AGE OF Match #{match.birthday.find_age.to_i} MIN #{@current_user.min_age.to_i}===MAX #{@current_user.max_age.to_i}"
       if @current_user.smoke && match.date_smoke || !@current_user.smoke
         @ranking[match.user_id] += 3.5
       end
       if @current_user.kids && match.date_kids || !@current_user.kids
-         @ranking[match.user_id] += 3.5
+         @ranking[match.user_id] += 12.2
       end
       if @current_user.want_kids && match.want_kids
-         @ranking[match.user_id] += 3.5
+         @ranking[match.user_id] += 9.7
       end
       if @current_user.tattoo && match.date_tattoo || !@current_user.tattoo
-         @ranking[match.user_id] += 3.5
+         @ranking[match.user_id] += 2.1
       end
       if @current_user.date_religion && match.date_religion || !@current_user.date_religion && @current_user.religion == match.religion || !match.date_religion && @current_user.religion == match.religion
-         @ranking[match.user_id] += 3.5
+         @ranking[match.user_id] += 7.9
       end
       if @current_user.pet && match.date_pet || !@current_user.pet
-         @ranking[match.user_id] += 3.5
+         @ranking[match.user_id] += 3.3
       end
       if @current_user.date_politics && match.date_politics || !@current_user.date_politics && @current_user.politics == match.politics || !match.date_politics && @current_user.politics == match.politics
-         @ranking[match.user_id] += 3.5
+         @ranking[match.user_id] += 6.6
       end
-      if match_age >= @current_user.min_age && match_age<= @current_user.max_age
-         @ranking[match.user_id] += 3.5
+      if match.birthday.find_age.to_i >= @current_user.min_age.to_i && match.birthday.find_age.to_i <= @current_user.max_age.to_i
+        puts "RIGHT AGE"
+        @ranking[match.user_id] += 9.1
       end
     end
     before = @ranking.length
@@ -228,7 +226,7 @@ class UsersController < ApplicationController
     else
       params[:date_pet] = false
     end
-    info = UserInfo.update(id, :max_age => params[:min_age], :min_age => params[:max_age], :hair => params[:hair], :eye => params[:eye], :education => params[:education], :kids => params[:kids], :date_kids => params[:date_kids], :want_kids => params[:want_kids], :politics => params[:politics], :date_politics => params[:date_politics], :smoke => params[:smoke], :date_smoke => params[:date_smoke], :tattoo => params[:tattoo], :date_tattoo => params[:date_tattoo], :religion => params[:religion], :date_religion => params[:date_religion], :pet => params[:pet], :date_pet => params[:date_pet], :birthday => params[:birthday])
+    info = UserInfo.update(id, :max_age => params[:max_age], :min_age => params[:min_age], :hair => params[:hair], :eye => params[:eye], :education => params[:education], :kids => params[:kids], :date_kids => params[:date_kids], :want_kids => params[:want_kids], :politics => params[:politics], :date_politics => params[:date_politics], :smoke => params[:smoke], :date_smoke => params[:date_smoke], :tattoo => params[:tattoo], :date_tattoo => params[:date_tattoo], :religion => params[:religion], :date_religion => params[:date_religion], :pet => params[:pet], :date_pet => params[:date_pet], :birthday => params[:birthday])
     if info.errors.full_messages[0]
      flash[:errors] = info.errors.full_messages
      redirect_to '/survey/personal'
@@ -352,12 +350,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    if user.errors.full_messages[0]
+    @user = User.find(params[:id])
+    if @user.errors.full_messages[0]
       flash[:errors] = user.errors.full_messages
       redirect_to users_edit_path
     else
-      user.destroy
+      session.clear
+      @user.destroy
       redirect_to '/users/new'
     end
   end

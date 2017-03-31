@@ -39,6 +39,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    adroit-age (2.0.0)
     arel (7.1.4)
     autoprefixer-rails (6.3.6.1)
       execjs
@@ -338,6 +339,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  adroit-age
   bcrypt (~> 3.1.7)
   bootstrap-sass
   bootstrap-will_paginate

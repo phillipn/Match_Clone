@@ -3,7 +3,7 @@
     <% @ranking.sort_by {|_key, value| value}.reverse.each do |user| %>
         <% @possible_matches.each do |match| %>
           <% if match.user_id == user[0] %>
-            <li class="list-group-item" style="height: 2%;"><a href="/users/<%= match.user_id %>"><%= match.user.first_name %> <%= match.user.last_name %></a> - (Ranking: <%= user[1]%>)<%= form_for @match_room do |f| %><%= f.hidden_field :receiver_id, value: user[0] %><%= f.submit 'Get a room' %><% end %></li>
+            <li class="list-group-item" style="height: 2%;"><a href="/users/<%= match.user_id %>"><%= match.user.first_name %> <%= match.user.last_name %></a> - (Ranking: <%= user[1].round(2)%>)<%= form_for @match_room do |f| %><%= f.hidden_field :receiver_id, value: user[0] %><%= f.submit 'Get a room' %><% end %></li>
       <% end %>
     <% end %>
   <% end %>
