@@ -5,7 +5,7 @@ class MatchRoomsController < ApplicationController
   def index
     @matches_sent = MatchRoom.where("sender_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
     @matches_received = MatchRoom.where("receiver_id = ? and (status = 'Open' or status = 'Pending')", session[:user]['id'])
-    @top_three = User.limit(3)
+    @top_three = User.order("RANDOM()").limit(3).where.not(id: session[:user]['id'])
   end
 
   def show
