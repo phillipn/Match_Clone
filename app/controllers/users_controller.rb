@@ -323,13 +323,29 @@ class UsersController < ApplicationController
   end
 
   def accountUpdate
-    user = User.find(session[:user]['id'])
     if params[:password] == params[:password_confirm]
-      user.password = params[:password]
+      user = User.find(params[:id])
+      user.first_name = params[:first_name]
+      user.last_name = params[:last_name]
       user.email = params[:email]
+      user.password = params[:password]
       user.save
+      if user.errors.full_messages[0]
+        flash[:errors]= user.errors.full_messages
+        redirect_to users_show_path
+      else
+        redirect_to users_edit_path
+      end
+    end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    if user.errors.full_messages[0]
+      flash[:errors] = user.errors.full_messages
+      redirect_to users_edit_path
     else
-      flash[:errors]= user.errors.full_messages.inspect
+      redirect_to '/'
     end
   end
 
