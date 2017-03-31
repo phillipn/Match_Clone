@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_if_logged_in, except: [:new, :create, :login]
-  before_action :completed_survey, except: [:new, :create, :login, :post_personality_survey, :personality_survey, :personal_survey, :post_personal_survey, :logout]
+
 
   def index
     @match_room = MatchRoom.new
@@ -71,40 +71,49 @@ class UsersController < ApplicationController
       match_age -= 1 if Date.today < match.birthday + match_age.years
       if @current_user.smoke && match.date_smoke || !@current_user.smoke
         @ranking[match.user_id] += 3.5
-      elsif @current_user.kids && match.date_kids || !@current_user.kids
+      end
+      if @current_user.kids && match.date_kids || !@current_user.kids
          @ranking[match.user_id] += 3.5
-      elsif @current_user.want_kids && match.want_kids
+      end
+      if @current_user.want_kids && match.want_kids
          @ranking[match.user_id] += 3.5
-      elsif @current_user.tattoo && match.date_tattoo || !@current_user.tattoo
+      end
+      if @current_user.tattoo && match.date_tattoo || !@current_user.tattoo
          @ranking[match.user_id] += 3.5
-      elsif @current_user.date_religion && match.date_religion || !@current_user.date_religion && @current_user.religion == match.religion || !match.date_religion && @current_user.religion == match.religion
+      end
+      if @current_user.date_religion && match.date_religion || !@current_user.date_religion && @current_user.religion == match.religion || !match.date_religion && @current_user.religion == match.religion
          @ranking[match.user_id] += 3.5
-      elsif @current_user.pet && match.date_pet || !@current_user.pet
+      end
+      if @current_user.pet && match.date_pet || !@current_user.pet
          @ranking[match.user_id] += 3.5
-      elsif @current_user.date_politics && match.date_politics || !@current_user.date_politics && @current_user.politics == match.politics || !match.date_politics && @current_user.politics == match.politics
+      end
+      if @current_user.date_politics && match.date_politics || !@current_user.date_politics && @current_user.politics == match.politics || !match.date_politics && @current_user.politics == match.politics
          @ranking[match.user_id] += 3.5
-      elsif match_age >= @current_user.min_age && match_age<= @current_user.max_age
+      end
+      if match_age >= @current_user.min_age && match_age<= @current_user.max_age
          @ranking[match.user_id] += 3.5
       end
     end
-    # @possible_matches.each do |match|
-    #   if @current_user.user.orientation == 'Straight' && match.user.orientation =='Straight' && @current_user.user.sex == match.user.sex
-    #     @ranking.delete(match.user_id)
-    #   elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Gay'
-    #     @ranking.delete(match.user_id)
-    #   elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Bi-Sexual' && @current_user.user.sex == match.user.sex
-    #     @ranking.delete(match.user_id)
-    #   elsif @current_user.user.orientation == 'Gay' && match.user.orientation == 'Bi-Sexual' || match.user.orientation == 'Gay' && @current_user.user.sex != match.user.sex
-    #     @ranking.delete(match.user_id)
-    #   # elsif @current_user.orientation == 'Bi-Sexual'
+    before = @ranking.length
+    @possible_matches.each do |match|
+      if @current_user.user.orientation == 'Straight' && match.user.orientation =='Straight' && @current_user.user.sex == match.user.sex
+        @ranking.delete(match.user_id)
+      elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Gay'
+        @ranking.delete(match.user_id)
+      elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Bi-Sexual' && @current_user.user.sex == match.user.sex
+        @ranking.delete(match.user_id)
+      elsif @current_user.user.orientation == 'Gay' && match.user.orientation == 'Bi-Sexual' || match.user.orientation == 'Gay' && @current_user.user.sex != match.user.sex
+        @ranking.delete(match.user_id)
+      # elsif @current_user.orientation == 'Bi-Sexual'
 
-    #   # elsif
+      # elsif
 
-    #   # elsif
+      # elsif
 
-    #   # elsif
-    #   end
-    # end
+      # elsif
+      end
+    end
+    puts "DELETED =========== #{before-@ranking.length}"
   end
 
   def post_personality_survey
@@ -238,22 +247,25 @@ class UsersController < ApplicationController
       user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], sex: params[:sex], orientation: params[:orientation], picture: '/uploads/user/picture/default.jpg')
       if user.errors.full_messages[0]
         flash[:errors] = user.errors.full_messages
+        puts "USER "
         redirect_to '/users/new'
       else
-        userinfo = UserInfo.create(user_id:user.id)
-      if userinfo.errors.full_messages[0]
-        flash[:errors] = user.errors.full_messages
-        redirect_to '/users/new'
-      else
-        userprof = Profile.create(user_id:user.id)
-        if userprof.errors.full_messages[0]
+        userinfo = UserInfo.new(user_id:user.id)
+        if !userinfo.save
+          puts "USERINFO======== #{userinfo.errors.full_messages}"
           flash[:errors] = user.errors.full_messages
           redirect_to '/users/new'
         else
-          session[:user] = {first_name: user.first_name, id: user.id}
-          redirect_to '/survey/personality'
+          userprof = Profile.create(user_id:user.id)
+          if userprof.errors.full_messages[0]
+            flash[:errors] = user.errors.full_messages
+            puts "USERPROF"
+            redirect_to '/users/new'
+          else
+            session[:user] = {first_name: user.first_name, id: user.id}
+            redirect_to '/survey/personality'
+          end
         end
-       end
      end
     else
       flash[:errors] = ["Passwords Do Not Match"]

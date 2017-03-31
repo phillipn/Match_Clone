@@ -15,29 +15,14 @@
   </div>
 </div>
 <div class="row">
-  <!--<%= will_paginate %>-->
-  <table class="table table-hover">
-    <thead>
-      <th style="color: black;">Name</th>
-      <th style="color: black;">Ranking</th>
-    </head>
-    <tbody>
-      <% @ranking.sort_by {|_key, value| value}.reverse.each do |user| %>
+  <ul class="list-group">
+    <% @ranking.sort_by {|_key, value| value}.reverse.each do |user| %>
         <% @possible_matches.each do |match| %>
           <% if match.user_id == user[0] %>
-            <tr>
-              <td style="color: black;"><%= match.user.first_name %> <%= match.user.last_name %></td>
-              <td style="color: black;">Ranking: <%= user[1]%></td>
-              <td><%= form_for @match_room do |f| %>
-                    <%= f.hidden_field :receiver_id, value: user[0] %>
-                      <%= f.submit 'Get a room' %>
-                       <% end %></td>
-            </tr>
+            <li class="list-group-item" style="height: 2%;"><%= match.user.first_name %> <%= match.user.last_name %> - (Ranking: <%= user[1]%>)<%= form_for @match_room do |f| %><%= f.hidden_field :receiver_id, value: user[0] %><%= f.submit 'Get a room' %><% end %></li>
       <% end %>
     <% end %>
   <% end %>
-    </tbody>
-  </table>
-  <!--<%= will_paginate %>-->
+  </ul>
 </div>
 
