@@ -1,28 +1,21 @@
-
-<div class="container-fluid well span6">
-  <div class="row-fluid">
-    <div class="span2" >
-      <img src="<%= @user.picture %>" class="img-circle">
-    </div>
-    <div class="card-block">
-      <h4><%=@user.first_name%> <%=@user.last_name%></h4>
+<div class="row-fluid">
+  <div class="userPic">
+    <img src="<%= @user.picture %>" class="img-circle">
+    <h3><%=@user.first_name%> <%=@user.last_name%></h3>
+  </div>
     <ul id="cardblock" class="list-group list-group-flush">
-      <li class="list-group-item"><h5>Email: <%=@user.email%></h5></li>
-      <li class="list-group-item"><h5>Occupation: <%=@userprof.job%></h5></li>
-      <li class="list-group-item"><h5>Political Stand: <%=@userinfo.politics%></h5></li>
+      <li class="list-group-item"><h5><strong>Email:</strong> <%=@user.email%></h5></li>
+      <li class="list-group-item"><h5><strong>Occupation:</strong> <%=@userprof.job%></h5></li>
+      <li class="list-group-item"><h5><strong>Political Stand:</strong> <%=@userinfo.politics%></h5></li>
     </ul>
-  </div>
-    <div class="card-block">
-      <%if session[:user]['id'] == @user.id%>
-        <a class='btn btn-primary' href="/users/<%=@user.id%>/edit/profile">Edit Profile</a>
-      <%else%>
-        <%= form_for @match_room do |f| %>
-          <%= f.hidden_field :receiver_id, value: @user.id %>
-          <%= f.submit 'Get a room', class: 'btn btn-success' %>
-        <% end %>
-      <%end%>
-    </div>
-  </div>
+    <%if session[:user]['id'] == @user.id%>
+    <a class='btn btn-primary' href="/users/<%=@user.id%>/edit/profile">Edit Profile</a>
+    <%else%>
+    <%= form_for @match_room do |f| %>
+    <%= f.hidden_field :receiver_id, value: @user.id %>
+    <%= f.submit 'Get a room', class: 'btn btn-success' %>
+    <% end %>
+    <%end%>
 </div>
 <br>
 <div id="abtme">

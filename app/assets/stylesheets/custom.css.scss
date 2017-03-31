@@ -3,12 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
 .main{
+  color: #600080;
   margin-top: 15px;
   padding: 15px;
   min-height: calc(100vh - 152px);
 }
 .nav li, .nav a {
-  color: #1AD1FF ;
+  color: white;
 }
 
 .nav li{
@@ -32,6 +33,7 @@
 }
 .row{
   padding: 30px;
+  opacity: .8;
 }
 
 footer{
@@ -105,9 +107,10 @@ footer{
 }
 
 .deepshd {
-  color: #1AD1FF;
+  color: white;
   background-color: #600080;
   letter-spacing: .1em;
+  border-radius: 10px;
   text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0, 0, 0, 0.9);
 }
 
@@ -131,14 +134,57 @@ footer{
 .card-block{
   font-family: sans-serif;
 }
+
+#cardblock li{
+  background-color:#600080;
+  padding: 5px;
+  border-radius: 8px;
+  opacity: .8;
+}
+
 .img-circle{
   height: 200px;
   width: 200px;
 }
+
 .row-fluid{
   text-align: center;
+  background-color:#999999;
+  padding: 10px;
+  border-radius: 10px;
 }
+
 .about{
   word-wrap: break-word;
   padding: 10px;
+}
+
+.editBTN{
+  color: white;
+  background-color: #600080
+}
+
+#picture{
+  color: white;
+  background-color: #600080;
+}
+
+.btns{
+  color: white;
+  background-color: #600080;
+}
+
+.btn{
+  background-color: #1AD1FF;
+}
+
+.userPic{
+  background-color: #1AD1FF;
+  width: 40%;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 7px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

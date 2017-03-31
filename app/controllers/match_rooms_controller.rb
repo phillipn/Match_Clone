@@ -31,7 +31,7 @@ class MatchRoomsController < ApplicationController
       flash[:errors] = @match_room.errors.full_messages
     end
 
-    MatchMailer.sample_email(@match_room.receiver).deliver
+    MatchMailer.match_email(@match_room.receiver).deliver
     redirect_to match_room_index_path
   end
 

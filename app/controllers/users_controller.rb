@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
     @match_room = MatchRoom.new
     @current_user = UserInfo.where(user_id: session[:user]['id']).first
+    puts @current_user.inspect
     istj = {best: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP" ], ok: ["ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP"], worst: ["ESFJ", "ESFP", "ENFP", "INFP"], population: 14}
     istp = {best: ["ESTJ", "ISTJ", "ENTJ", "ESTP"], ok: ["ESFJ", "ISFP", "INTJ", "ISFJ"], worst: ["ISTP", "ESFP", "ENTP", "INTP", "ENFJ", "INFJ", "ENFP", 'INFP'], population: 6}
     estp = {best: ["ISTJ", "ESTP", "ISTP", "ESFP"], ok: ["ESTJ", "ISFP", "ENTJ", "ENTP", "INTP", "ISFJ"],worst: ["ESFJ", "INTJ", "ENFJ", "INFJ", "ENFP", "INFP"],population: 6}
@@ -330,13 +331,29 @@ class UsersController < ApplicationController
   end
 
   def accountUpdate
-    user = User.find(session[:user]['id'])
     if params[:password] == params[:password_confirm]
-      user.password = params[:password]
+      user = User.find(params[:id])
+      user.first_name = params[:first_name]
+      user.last_name = params[:last_name]
       user.email = params[:email]
+      user.password = params[:password]
       user.save
+      if user.errors.full_messages[0]
+        flash[:errors]= user.errors.full_messages
+        redirect_to users_show_path
+      else
+        redirect_to users_edit_path
+      end
+    end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    if user.errors.full_messages[0]
+      flash[:errors] = user.errors.full_messages
+      redirect_to users_edit_path
     else
-      flash[:errors]= user.errors.full_messages.inspect
+      redirect_to '/'
     end
   end
 

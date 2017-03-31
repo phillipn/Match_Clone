@@ -13,20 +13,16 @@ body{
 
 #abtme{
   background-color:#600080;
-  color: #B9E2F8;
+  color: white;
   font-family: 'Courgette', cursive;
   text-align: center;
   border-radius: 10px;
+  padding: 10px;
+  opacity: .9;
 }
-
-.abtmebox{
-  background-color:#1ad1ff;
-  color: #600080;
-}
-
 
 .box{
-    background-color: #B9E2F8;
+    background-color: white;
     color: #600080;
     border:1px solid black;
     padding: 20px;
@@ -41,20 +37,12 @@ body{
   padding: 5px;
 }
 
-.card{
-  margin-left: -15px;
-  width: 20px;
-  display: inline-block;
-  color: #600080;
-  background-color: white;
-  text-align: center;
-}
-
 .row{
   width: 100%;
   background-color: #600080;
   border-radius: 10px;
   margin-left: 0px;
+  opacity: .9;
 }
 
 .form-area{
@@ -71,7 +59,12 @@ body{
     background-position: center;
     color: white;
     border: 3px solid #600080;
+    opacity: .9;
   }
+
+  .container-fluid{
+  background-color: #600080;
+}
 
   .image{
     margin-top: 10px;
@@ -79,12 +72,6 @@ body{
 
   .list-group-item{
     height: 40px;
-  }
-
-  .love{
-    background-color: #600080;
-    margin-top: 20px;
-    border-radius: 10px;
   }
 
   .jumbo1{
@@ -97,6 +84,10 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+  }
+
+  #newRow label{
+  color: white;
   }
 
   #homejumbo{
@@ -155,6 +146,7 @@ body{
   margin-left: -15px;
   border-radius: 10px;
   text-align: center;
+  opacity: .9;
 
 }
 
@@ -166,4 +158,16 @@ body{
 p{
   font-family: 'Courgette', cursive;
 
+}
+
+label{
+  color: #600080;
+}
+
+#cardblock{
+  width: 40%;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
 }
