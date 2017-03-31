@@ -6,7 +6,7 @@
   <body>
     <h1>Hi <%= @user.first_name %></h1>
     <p>
-      <%= @sender.first_name %> wants to hook up with you. <%= link_to 'See her profile', users_show_path(@sender) %>.
+      <%= @sender.first_name %> wants to hook up with you. <%= link_to 'See her profile', users_show_url(@sender) %>.
     </p>
   </body>
 </html>
