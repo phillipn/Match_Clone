@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     elsif @current_user.personality == "INFJ"
       relationships = infj
     elsif @current_user.personality == "INFP"
-      relationships = infg
+      relationships = infp
     elsif @current_user.personality == "ENFG"
       relationships = enfg
     elsif @current_user.personality == "ENFJ"
