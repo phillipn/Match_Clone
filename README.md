@@ -38,17 +38,14 @@
 
 ## To-Do / Bugs
   * Filterrific on index page
+  * gender and sexual orientation
+  * remove other gender
 
-  * bug with update on profile about_me
+
+
 
   * have geokit take in ip address and geocode lat long and address
+  * add Drop down for religion and education on profile edit page
+  * edit file upload buttom on edit page
+  * bug with update on profile about_me
 
-  * add Drop down for religion on profile edit page
-
-  * only have one religion data column
-
-  * only have one gender or orientation column
-
-  * edit file upload on edit page
-
-  * validation on multi option choices in user_info
