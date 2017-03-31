@@ -2,7 +2,7 @@
   <div class="header">
     <h1>Edit Your Profile</h1>
   </div>
-<div class="col-md-5">
+<div class="col-md-6">
     <div class="form-area">
         <form role="form" action="/users/<%=@user.id%>/update/profile" method="POST">
           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
@@ -42,7 +42,7 @@
          </form>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
        <div class="form-area">
          <form role="form" action="/users/<%=@user.id%>/update/account" method="POST" enctype="multipart/form-data">
            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
