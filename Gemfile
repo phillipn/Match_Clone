@@ -40,6 +40,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'fabrication'
 gem 'faker'
+gem 'filterrific'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'local_time'

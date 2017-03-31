@@ -70,6 +70,7 @@ GEM
     faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.18)
+    filterrific (2.1.2)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.40.0)
@@ -343,6 +344,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   fabrication
   faker
+  filterrific
   fog
   geokit-rails
   hirb

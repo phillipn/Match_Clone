@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_if_logged_in, except: [:new, :create, :login]
+  before_action :completed_survey, except: [:new, :create, :login, :post_personality_survey, :personality_survey, :personal_survey, :post_personal_survey, :logout]
 
   def index
     @match_room = MatchRoom.new
@@ -287,7 +288,6 @@ class UsersController < ApplicationController
       user.save
 
       userinfo = UserInfo.find_by(user_id: params[:id])
-      #userinfo.personality = params[:personality]
       userinfo.max_age = params[:max_age]
       userinfo.min_age = params[:min_age]
       userinfo.education = params[:education]
