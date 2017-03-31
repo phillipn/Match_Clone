@@ -68,6 +68,8 @@ class UsersController < ApplicationController
       end
     end
     @possible_matches.each do |match|
+      puts Date.today.year
+      puts match.birthday.year
       match_age = Date.today.year - match.birthday.year
       match_age -= 1 if Date.today < match.birthday + match_age.years
       if @current_user.smoke && match.date_smoke || !@current_user.smoke
@@ -310,8 +312,10 @@ class UsersController < ApplicationController
 
   def update
       user = User.find_by(id: params[:id])
+      puts user
       user.picture = params[:picture]
       user.save
+      puts user.errors.full_messages
 
       userinfo = UserInfo.find_by(user_id: params[:id])
       userinfo.max_age = params[:max_age]
@@ -353,12 +357,13 @@ class UsersController < ApplicationController
       flash[:errors] = user.errors.full_messages
       redirect_to users_edit_path
     else
-      redirect_to '/'
+      user.destroy
+      redirect_to '/users/new'
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:personality,:max_age,:min_age,:job,:hobbies,:religion,:ideal_mate,:about_me,:password,:password_confirm)
+    params.require(:user).permit(:personality,:picture,:max_age,:min_age,:job,:hobbies,:religion,:ideal_mate,:about_me,:password,:password_confirm)
   end
 end

@@ -18,7 +18,7 @@ class User < ApplicationRecord
     message: "%{value} is not a valid orientation" }
   validates :email, presence:true, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
   validate :picture_size
-  validates :password, presence:true, length:{minimum:5}
+  validates :password, presence:true, length:{minimum:5}, on: :create
 
   private
 
