@@ -54,6 +54,14 @@
          <form role="form" action="/users/<%=@user.id%>/update/account" method="POST" enctype="multipart/form-data">
            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
            <input type="hidden" name="_method" value="patch">
+           <div class="form-group">
+             <label for="first_name">First Name</label>
+             <input type="text" class="form-control" placeholder="First Name" name="first_name" value="<%=@user.first_name%>">
+           </div>
+           <div class="form-group">
+             <label for="last_name">Last Name</label>
+             <input type="text" class="form-control"  placeholder="Last Name" name="last_name" value="<%=@user.last_name%>">
+           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<%=@user.email%>">
@@ -69,6 +77,12 @@
           </div>
           <br>
         <input type="submit" name="" value="Edit Profile">
+      </form>
+      <br>
+      <form  action="/users/<%=@user.id%>/destroy" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+        <input type="hidden" name="_method" value="patch">
+        <input class="btns" type="submit" name="" value="Delete Account">
       </form>
     </div>
   </div>
