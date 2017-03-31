@@ -39,6 +39,7 @@
 ## To-Do / Bugs
   * Filterrific on index page
   * gender and sexual orientation
+  * remove other gender
 
 
 

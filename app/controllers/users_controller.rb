@@ -59,34 +59,52 @@ class UsersController < ApplicationController
     @ranking = {}
     @possible_matches.each do |match|
       if relationships[:best].include?(match.personality)
-        @ranking[match.user_id] = rand(150..160)
+        @ranking[match.user_id] = 111
       elsif relationships[:ok].include?(match.personality)
-        @ranking[match.user_id] = rand(90..110)
+        @ranking[match.user_id] = 72
       else
-        @ranking[match.user_id] = rand(40..50)
+        @ranking[match.user_id] = 43
       end
     end
     @possible_matches.each do |match|
       match_age = Date.today.year - match.birthday.year
       match_age -= 1 if Date.today < match.birthday + match_age.years
       if @current_user.smoke && match.date_smoke || !@current_user.smoke
-        @ranking[match.user_id] += rand(5..7)
+        @ranking[match.user_id] += 3.5
       elsif @current_user.kids && match.date_kids || !@current_user.kids
-         @ranking[match.user_id] += rand(5..7)
+         @ranking[match.user_id] += 3.5
       elsif @current_user.want_kids && match.want_kids
-         @ranking[match.user_id] += rand(5..7)
+         @ranking[match.user_id] += 3.5
       elsif @current_user.tattoo && match.date_tattoo || !@current_user.tattoo
-         @ranking[match.user_id] += rand(5..7)
+         @ranking[match.user_id] += 3.5
       elsif @current_user.date_religion && match.date_religion || !@current_user.date_religion && @current_user.religion == match.religion || !match.date_religion && @current_user.religion == match.religion
-         @ranking[match.user_id] += rand(5..7)
+         @ranking[match.user_id] += 3.5
       elsif @current_user.pet && match.date_pet || !@current_user.pet
-         @ranking[match.user_id] += rand(5..7)
+         @ranking[match.user_id] += 3.5
       elsif @current_user.date_politics && match.date_politics || !@current_user.date_politics && @current_user.politics == match.politics || !match.date_politics && @current_user.politics == match.politics
-         @ranking[match.user_id] += rand(5..7)
+         @ranking[match.user_id] += 3.5
       elsif match_age >= @current_user.min_age && match_age<= @current_user.max_age
-         @ranking[match.user_id] += rand(5..7)
+         @ranking[match.user_id] += 3.5
       end
     end
+    # @possible_matches.each do |match|
+    #   if @current_user.user.orientation == 'Straight' && match.user.orientation =='Straight' && @current_user.user.sex == match.user.sex
+    #     @ranking.delete(match.user_id)
+    #   elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Gay'
+    #     @ranking.delete(match.user_id)
+    #   elsif @current_user.user.orientation == 'Straight' && match.user.orientation == 'Bi-Sexual' && @current_user.user.sex == match.user.sex
+    #     @ranking.delete(match.user_id)
+    #   elsif @current_user.user.orientation == 'Gay' && match.user.orientation == 'Bi-Sexual' || match.user.orientation == 'Gay' && @current_user.user.sex != match.user.sex
+    #     @ranking.delete(match.user_id)
+    #   # elsif @current_user.orientation == 'Bi-Sexual'
+
+    #   # elsif
+
+    #   # elsif
+
+    #   # elsif
+    #   end
+    # end
   end
 
   def post_personality_survey
