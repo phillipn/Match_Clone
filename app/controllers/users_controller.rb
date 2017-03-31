@@ -270,15 +270,15 @@ class UsersController < ApplicationController
 
   def login
     user = User.find_by(email:params[:email])
+    puts user.inspect
     if user
       if user.authenticate(params[:password])
         session[:user] = {first_name: user.first_name, id: user.id}
-        redirect_to '/'
+        redirect_to root_path and return
       else
         flash[:errors] = ["Incorrect Password"]
-        redirect_to '/users/new'
+        redirect_to users_new_path and return
       end
-
     else
       flash[:errors] = ["Email Spelled Incorrect or Not Registered"]
       redirect_to '/users/new'
