@@ -1,40 +1,43 @@
 # Match.com Clone
-### This is a Clone of Match.com using Ruby on Rails. Built in 5 Days
+### This is a Clone of Match.com using Ruby on Rails. Built in 5 Days.
 
 ## Authors
-#### Patrick Falconer
-#### Nick Phillips
-#### Juan Martinez
+  * ### <a href="https://github.com/P-J-FALCONER">Patrick Falconer</a>
+  * ### <a href="https://github.com/phillipn">Nick Phillips</a>
+  * ### <a href="https://github.com/juanm18">Juan Martinez</a>
 
 ## Dependencies
   ```
-    gem 'hirb'
-    gem 'rails', '~> 5.0.2'
-    gem 'pg', '~> 0.18'
-    gem 'rails_12factor'
-    gem 'puma', '~> 3.0'
-    gem 'sass-rails', '~> 5.0'
-    gem 'uglifier', '>= 1.3.0'
-    gem 'coffee-rails', '~> 4.2'
-    gem 'geokit-rails'
-    gem 'jquery-rails'
-    gem 'turbolinks', '~> 5'
-    gem 'jbuilder', '~> 2.5'
-    gem 'redis', '~> 3.0'
-    gem 'bcrypt', '~> 3.1.7'
-    gem 'will_paginate'
-    gem 'bootstrap-will_paginate'
-    gem 'bootstrap-sass'
-    gem 'carrierwave'
-    gem 'mini_magick'
-    gem 'fog'
-    gem 'fabrication'
-    gem 'faker'
-    gem 'local_time'
+    hirb
+    rails (v5.0.2)
+    pg (v0.18)
+    rails_12factor
+    puma (v3.0)
+    sass-rails (v5.0)
+    uglifier (v1.3.0)
+    coffee-rails (v4.2)
+    geokit-rails
+    jquery-rails
+    turbolinks (v5)
+    jbuilder (v2.5)
+    redis (v3.0)
+    bcrypt (v3.1.7)
+    will_paginate
+    bootstrap-will_paginate
+    bootstrap-sass
+    carrierwave
+    mini_magick
+    fog
+    fabrication
+    faker
+    local_time
   ```
 ## Matching Algorithm
+#### Matched Based on a Personality Test along with multiple factors such as religion, sex, sexual orientation, age range, etc. 
 
 ## Future Version Updates
-
-  * edit file upload buttom on edit page
+  * Location based
+  * Consolidate User Model
+  * Allow for AJAX search on Index Page
+  * 
 
