@@ -2,7 +2,6 @@
 <div class="container-fluid well span6">
   <div class="row-fluid">
     <div class="span2" >
-    dsfgs
       <img src="<%= @user.picture %>" class="img-circle">
     </div>
     <div class="card-block">
@@ -10,7 +9,7 @@
     <ul id="cardblock" class="list-group list-group-flush">
       <li class="list-group-item"><h5>Email: <%=@user.email%></h5></li>
       <li class="list-group-item"><h5>Occupation: <%=@userprof.job%></h5></li>
-      <li class="list-group-item"><h5>Sex: <%=@user.sex%></h5></li>
+      <li class="list-group-item"><h5>Political Stand: <%=@userinfo.politics%></h5></li>
     </ul>
   </div>
     <div class="card-block">
@@ -19,18 +18,18 @@
       <%else%>
         <%= form_for @match_room do |f| %>
           <%= f.hidden_field :receiver_id, value: @user.id %>
-          <%= f.submit 'Get a room' %>
+          <%= f.submit 'Get a room', class: 'btn btn-success' %>
         <% end %>
       <%end%>
     </div>
   </div>
 </div>
 <br>
-<div id="abtme" class="jumbotron jumbotron-fluid">
-  <div class="container">
+<div id="abtme">
+  <div>
     <h1 class="display-3">About Me</h1>
     <hr>
-    <h2><%=@userprof.about_me%></h2>
+    <h3 class='about'><%=@userprof.about_me%></h3>
   </div>
 </div>
 <br>
@@ -40,7 +39,6 @@
       <div class="box">
         <h3>Bio:</h3>
         <p>Email: <%=@user.email%></p>
-        <p>Personality Type: <%=@userinfo.personality%> </p>
         <p>Hobbies: <%=@userprof.hobbies%></p>
         <p>Sex: <%=@user.sex%></p>
         <p>Orientation: <%=@user.orientation%></p>
@@ -58,6 +56,7 @@
     <div class="col-sm-3">
       <div class="box">
         <h3>Info:</h3>
+        <p>Hair Color: <%=@userinfo.hair%></p>
         <p>Eye Color: <%=@userinfo.eye%></p>
         <p>Own Pets: <%if @userinfo.pet == true%>Yes<%end%><%if @userinfo.pet == false%>No<%end%></p>
         <p>Tattoo: <%if @userinfo.tattoo == true%>Yes<%end%><%if @userinfo.tattoo == false%>No<%end%></p>
@@ -66,7 +65,7 @@
     <div class="col-sm-3">
       <div class="box">
         <h3>More Info:</h3>
-        <p>Hair Color: <%=@userinfo.hair%></p>
+        <p>Want Kinds?: <%if @userinfo.want_kids == true%>Yes<%end%><%if @userinfo.want_kids == false%>No<%end%></p>
         <p>Education: <%=@userinfo.education%> </p>
         <p>Have Kids: <%if @userinfo.kids == true%>Yes<%end%><%if @userinfo.kids == false%>No<%end%></p>
         <p>Birthday: <%=@userinfo.birthday%></p>

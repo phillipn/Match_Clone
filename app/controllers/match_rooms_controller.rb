@@ -35,7 +35,6 @@ class MatchRoomsController < ApplicationController
   end
 
   def update
-    puts 'hit server'
     @match_room = MatchRoom.find(params[:id])
     @match_room.status = params["match_room"]["status"]
     @match_room.save

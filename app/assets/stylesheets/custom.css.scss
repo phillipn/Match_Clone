@@ -42,6 +42,9 @@ footer{
   width: 100%;
   background-color: #600080;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .thumbnail{
@@ -112,7 +115,7 @@ footer{
   h1 {
   font-family: 'Courgette', Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
   font-size: 92px;
-  padding: 80px 50px;
+  padding: 50px;
   text-align: center;
   text-transform: uppercase;
   text-rendering: optimizeLegibility;
@@ -134,4 +137,8 @@ footer{
 }
 .row-fluid{
   text-align: center;
+}
+.about{
+  word-wrap: break-word;
+  padding: 10px;
 }
