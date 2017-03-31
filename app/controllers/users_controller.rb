@@ -352,12 +352,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    if user.errors.full_messages[0]
+    @user = User.find(params[:id])
+    if @user.errors.full_messages[0]
       flash[:errors] = user.errors.full_messages
       redirect_to users_edit_path
     else
-      user.destroy
+      session.clear
+      @user.destroy
       redirect_to '/users/new'
     end
   end

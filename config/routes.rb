@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/users/:id/edit/profile' => 'users#edit', as: "users_edit"
   patch '/users/:id/update/profile' => 'users#update'
   patch '/users/:id/update/account' => 'users#accountUpdate'
-  patch 'users/:id/destroy' => 'users#destroy'
+  delete 'users/:id' => 'users#destroy', as: 'user_destroy'
 
 
   get 'match_rooms/' => 'match_rooms#index', as: "match_room_index"

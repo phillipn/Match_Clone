@@ -1,0 +1,10 @@
+<div id="deleteAlert" class="alert">
+  <h2>Are you sure you want to Delete Account</h2>
+  <form class="" action="/users/<%=@user.id%>/destroy" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="submit" name="" value="YES">
+  </form>
+  <br>
+  <button type="button" name="button"><a href="/">NO</a></button>
+</div>
