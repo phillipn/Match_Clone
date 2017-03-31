@@ -68,6 +68,8 @@ class UsersController < ApplicationController
       end
     end
     @possible_matches.each do |match|
+      puts Date.today.year
+      puts match.birthday.year
       match_age = Date.today.year - match.birthday.year
       match_age -= 1 if Date.today < match.birthday + match_age.years
       if @current_user.smoke && match.date_smoke || !@current_user.smoke
