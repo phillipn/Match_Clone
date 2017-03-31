@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     elsif @current_user.personality == "INFJ"
       relationships = infj
     elsif @current_user.personality == "INFP"
-      relationships = infg
+      relationships = infp
     elsif @current_user.personality == "ENFG"
       relationships = enfg
     elsif @current_user.personality == "ENFJ"
@@ -68,7 +68,6 @@ class UsersController < ApplicationController
       end
     end
     @possible_matches.each do |match|
-  
       if @current_user.smoke && match.date_smoke || !@current_user.smoke
         @ranking[match.user_id] += 3.5
       end
