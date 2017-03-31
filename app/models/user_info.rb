@@ -17,4 +17,5 @@ class UserInfo < ApplicationRecord
     end
   end
   
+  
 end

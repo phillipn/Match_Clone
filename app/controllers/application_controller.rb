@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
   
   def completed_survey
-    user = UserInfo.find_by(user_id: session[:user]['id']).first
+    user = UserInfo.find_by(user_id: session[:user]['id'])
     if !user.personality
       redirect_to '/survey/personality'
     elsif !user.religion || !user.hair || !user.eye
