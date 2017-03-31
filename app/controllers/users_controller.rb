@@ -68,7 +68,6 @@ class UsersController < ApplicationController
       end
     end
     @possible_matches.each do |match|
-      puts "AGE OF Match #{match.birthday.find_age.to_i} MIN #{@current_user.min_age.to_i}===MAX #{@current_user.max_age.to_i}"
       if @current_user.smoke && match.date_smoke || !@current_user.smoke
         @ranking[match.user_id] += 3.5
       end
