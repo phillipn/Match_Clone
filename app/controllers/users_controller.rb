@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
     @match_room = MatchRoom.new
     @current_user = UserInfo.where(user_id: session[:user]['id']).first
+    puts @current_user.inspect
     istj = {best: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP" ], ok: ["ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP"], worst: ["ESFJ", "ESFP", "ENFP", "INFP"], population: 14}
     istp = {best: ["ESTJ", "ISTJ", "ENTJ", "ESTP"], ok: ["ESFJ", "ISFP", "INTJ", "ISFJ"], worst: ["ISTP", "ESFP", "ENTP", "INTP", "ENFJ", "INFJ", "ENFP", 'INFP'], population: 6}
     estp = {best: ["ISTJ", "ESTP", "ISTP", "ESFP"], ok: ["ESTJ", "ISFP", "ENTJ", "ENTP", "INTP", "ISFJ"],worst: ["ESFJ", "INTJ", "ENFJ", "INFJ", "ENFP", "INFP"],population: 6}
