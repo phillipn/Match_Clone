@@ -315,8 +315,10 @@ class UsersController < ApplicationController
 
   def update
       user = User.find_by(id: params[:id])
+      puts user
       user.picture = params[:picture]
       user.save
+      puts user.errors.full_messages
 
       userinfo = UserInfo.find_by(user_id: params[:id])
       userinfo.max_age = params[:max_age]
@@ -364,6 +366,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:personality,:max_age,:min_age,:job,:hobbies,:religion,:ideal_mate,:about_me,:password,:password_confirm)
+    params.require(:user).permit(:personality,:picture,:max_age,:min_age,:job,:hobbies,:religion,:ideal_mate,:about_me,:password,:password_confirm)
   end
 end
