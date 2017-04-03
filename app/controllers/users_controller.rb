@@ -55,11 +55,14 @@ class UsersController < ApplicationController
       relationships = entp
     elsif @current_user.personality == "ENTJ"
       relationships = entj
+    elsif @current_user.personality == "ENFP"
+      relationships = enfp
     end
     @possible_matches = UserInfo.where(personality: ["ESTJ", "ISTJ", "INTJ", "ISTP", "ESTP", "ENTJ", "INTP", "ENFJ", "INFJ", "ISFJ", "ISFP", "ENTP","ESFJ", "ESFP", "ENFP", "INFP"]).where.not(user_id: session[:user]['id'])
     @ranking = {}
     @possible_matches.each do |match|
       puts match
+      puts relationships[:best]
       if relationships[:best].include?(match.personality)
         @ranking[match.user_id] = 111
       elsif relationships[:ok].include?(match.personality)

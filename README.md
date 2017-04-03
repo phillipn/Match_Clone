@@ -1,5 +1,5 @@
 # Match.com Clone
-### This is a Clone of Match.com using Ruby on Rails. Built in 5 Days.
+### This is a Clone of Match.com using Ruby on Rails. Built in 5 Days. <a href="https://dating-site-project.herokuapp.com">Check it out here</a>
 
 ## Authors
   * ### <a href="https://github.com/P-J-FALCONER">Patrick Falconer</a>
@@ -33,11 +33,9 @@
     local_time
   ```
 ## Matching Algorithm
-#### Matched Based on a Personality Test along with multiple factors such as religion, sex, sexual orientation, age range, etc. 
+#### Matched Based on a Personality Test along with multiple factors such as religion, sex, sexual orientation, age range, etc.
 
 ## Future Version Updates
   * Location based
   * Consolidate User Model
   * Allow for AJAX search on Index Page
-  * 
-
