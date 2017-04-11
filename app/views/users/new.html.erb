@@ -2,7 +2,7 @@
   <h1 class="elegantshd"> MEET UP</h1>
 </div>
 <div id="newRow" class="row">
-  <div id="loginBox" class="col-xs-4 col-sm-4 col-lg-4">
+  <div id="loginBox" class="col-xs-12 col-md-5">
     <h3>Login</h3>
     <form action="/login" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -19,7 +19,7 @@
     </form>
   </div>
 
-  <div id="registerBox" class="col-xs-4 col-sm-4 col-lg-4">
+  <div id="registerBox" class="col-xs-12 col-md-offset-2 col-md-5">
     <h3>Register And Meet Friendly Singles!</h3>
     <form action="/users" method="post">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -90,8 +90,3 @@
 </div>
 <br>
 <br>
-<div id="homejumbo" class="jumbotron jumbotron-fluid">
-  <div  class="container">
-    <h1 class="display-3">Let Us Help You Find Your Soultmate!</h1>
-  </div>
-</div>
