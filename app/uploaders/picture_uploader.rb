@@ -1,10 +1,12 @@
 class PictureUploader < CarrierWave::Uploader::Base
-  def default_url(*args)
-    "/uploads/user/picture/default.png"
-  end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+
+  def default_url(*args)
+    "/uploads/user/picture/default.png"
+  end
+
   process resize_to_limit: [400, 400]
 
   if Rails.env.production?
@@ -13,9 +15,6 @@ class PictureUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
-  # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
